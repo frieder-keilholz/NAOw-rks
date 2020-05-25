@@ -12,7 +12,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes("test", "utf-8"))
         print(self.client_address)
-        print(self.)
+        print(self.path)
 
 if __name__ == "__main__":        
     webServer = HTTPServer((hostName, serverPort), MyServer)
