@@ -1,7 +1,7 @@
 {
     "module_name":"Hello NAO",
     "module_id":0,
-    "description":" NAO stellt sich vor ",
+    "description":"NAO stellt sich vor",
     "class":"1-6",
     "subject":"Einführung NAO",
     "created_by":{

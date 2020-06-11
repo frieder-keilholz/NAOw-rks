@@ -1,0 +1,13 @@
+{
+    "username":"",
+    "first_name":"Martina",
+    "last_name":"Musterfrau",
+    "user_id":0,
+    "modules":[
+        {
+            "module_name":"Hello NAO",
+            "module_id":0,
+            "description":"NAO stellt sich vor"
+        }
+    ]
+}
