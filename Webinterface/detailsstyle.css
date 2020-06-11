@@ -1,5 +1,6 @@
 body {
-    background: -webkit-linear-gradient(left, #3931af, #ffffff);
+    /**background: -webkit-linear-gradient(left, #3931af, #ffffff);**/
+    background: -webkit-linear-gradient(left, #0069b1, #ffffff);
 }
 
 .emp-profile {

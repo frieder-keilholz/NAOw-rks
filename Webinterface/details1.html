@@ -1,8 +1,8 @@
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="detailsstyle.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -18,12 +18,12 @@
         </div>
     </nav>
     <div class="container emp-profile">
-        <form method="post">
+        <!--form method="post"-->
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="http://www.comoffice.org:31039/images/nao.jpeg" alt="" />
-
+                        <!--img src="http://www.comoffice.org:31039/images/nao.jpeg" alt="" /-->
+                        <img src="images/naos.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -37,16 +37,19 @@
                         <p class="proile-rating">Klassenstufe: <span>1-6</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">&Uumlbersicht</a>
+                                <!--a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">&Uumlbersicht</a-->
+                                <a class="nav-link active" id="home-tab" onclick="document.getElementById('home').className += ' active show'; document.getElementById('tasks').classList.remove('active');this.classList.add('active');document.getElementById('tasks-tab').classList.remove('active');">Übersicht</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Aufgaben</a>
+                                <!--a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Aufgaben</a-->
+                                <a class="nav-link" id="tasks-tab" onclick="document.getElementById('tasks').className += ' active show'; document.getElementById('home').classList.remove('active'); this.classList.add('active');document.getElementById('home-tab').classList.remove('active');">Aufgaben</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Bearbeiten" />
+                    <!--input type="submit" class="profile-edit-btn" name="btnAddMore" value="Bearbeiten" /-->
+                    <button class="profile-edit-btn">Bearbeiten</button>
                 </div>
             </div>
             <div class="row">
@@ -108,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Fragestellung:</label>
@@ -130,7 +133,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        <!--/form-->
     </div>
 </body>
 </html>
