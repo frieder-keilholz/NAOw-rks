@@ -1,0 +1,11 @@
+body {
+    /**background: -webkit-linear-gradient(left, #3931af, #ffffff);**/
+    background: -webkit-linear-gradient(left, #0069b1, #ffffff);
+}
+.foreground{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
