@@ -21,10 +21,10 @@ class MyServer(BaseHTTPRequestHandler):
         
         if chopped_self.path == '/':
             MyServer.serv_test(self)
-        elif chopped_self.path =='/modules':
-            MyServer.serv_modules(self)
+        elif chopped_self.path =='/module':
+            MyServer.serv_module(self)
         elif chopped_self.path =='/users':
-            MyServer.serv_modules(self)
+            MyServer.serv_module(self)
         else:
             print(chopped_self.path)
             #self.send_response(404)
@@ -46,7 +46,7 @@ class MyServer(BaseHTTPRequestHandler):
         print(self.client_address)
         print(self.path)
 
-    def serv_modules(self):
+    def serv_module(self):
         path = Path(__file__).parent / "module1.json"
         file_to_open = open(path).read()
         chopped_self = urlparse(self.path)
@@ -68,8 +68,10 @@ class MyServer(BaseHTTPRequestHandler):
             select_string = select_string + ";"
             print (select_string)
             replyJSON = MyServer.execute_select(select_string)
-
-        print('SERVING modules 200')
+        else:
+            replyJSON = MyServer.execute_select('SELECT * FROM modules;')
+            print("hi")
+        print('SERVING module 200')
         self.send_response(200)
         self.send_header("Content-type", "JSON")
         self.end_headers()
@@ -86,7 +88,7 @@ class MyServer(BaseHTTPRequestHandler):
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
-                select_string = "SELECT * FROM modules WHERE "
+                select_string = "SELECT * FROM module WHERE "
                 print (select_string)
                 i = 0
                 for key in query_dict:
@@ -98,7 +100,7 @@ class MyServer(BaseHTTPRequestHandler):
                 print (select_string)
                 MyServer.execute_select(select_string)
 
-            print('SERVING modules 200')
+            print('SERVING module 200')
             self.send_response(200)
             self.send_header("Content-type", "JSON")
             self.end_headers()
