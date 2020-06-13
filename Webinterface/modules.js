@@ -23,7 +23,7 @@ function loadModule(moduleId){
             addModuleCard(moduleJSON);
         }
     }
-    xhttp.open("GET","192.168.2.168:42030/modules?modules_id="+moduleId+"",true);
+    xhttp.open("GET","192.168.2.168:42030/modules?module_id="+moduleId+"",true);
     xhttp.send();
 }
 
