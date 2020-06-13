@@ -1,3 +1,5 @@
+loadModules(1);
+
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
