@@ -104,7 +104,7 @@ class MyServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(bytes(file_to_open, "utf-8"))
         except:
-            print("send_errör")
+            print("send_error")
             self.send_error(404)
       """
       
