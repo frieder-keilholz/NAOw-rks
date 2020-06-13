@@ -10,7 +10,7 @@ import json
 
 
 
-hostName = "localhost"
+hostName = "0.0.0.0"
 serverPort = 42030
 
 class MyServer(BaseHTTPRequestHandler):
