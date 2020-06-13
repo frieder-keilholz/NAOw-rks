@@ -10,7 +10,7 @@ import json
 
 
 
-hostName = "0.0.0.0"
+hostName = "localhost"
 serverPort = 42030
 
 class MyServer(BaseHTTPRequestHandler):
@@ -23,8 +23,8 @@ class MyServer(BaseHTTPRequestHandler):
             MyServer.serv_test(self)
         elif chopped_self.path =='/module':
             MyServer.serv_module(self)
-        elif chopped_self.path =='/users':
-            MyServer.serv_module(self)
+        elif chopped_self.path =='/user':
+            MyServer.serv_user(self)
         else:
             print(chopped_self.path)
             #self.send_response(404)
@@ -47,8 +47,41 @@ class MyServer(BaseHTTPRequestHandler):
         print(self.path)
 
     def serv_module(self):
-        path = Path(__file__).parent / "module1.json"
-        file_to_open = open(path).read()
+        print("modul_serv-----------------------------------------------------------------")
+        chopped_self = urlparse(self.path)
+        print(chopped_self)
+        try:
+            if (chopped_self.query):
+                query_self = chopped_self.query
+                query_dict = dict(qc.split("=") for qc in query_self.split("&"))
+                print( query_dict)
+                #building the select statemanet
+                select_string = "SELECT * FROM modules WHERE "
+                print (select_string)
+                i = 0
+                for key in query_dict:
+                    print("in Key Value loop")
+                    if (i != 0):
+                        select_string = select_string + " AND "
+                    select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
+                    i=+ 1
+                select_string = select_string + ";"
+                print (select_string)
+                replyJSON = MyServer.execute_select(select_string)
+            else:
+                replyJSON = MyServer.execute_select('SELECT * FROM modules;')
+                print("hi")
+            print('SERVING module 200')
+            self.send_response(200)
+            self.send_header("Content-type", "JSON")
+            self.end_headers()
+            self.wfile.write(bytes(replyJSON, "utf-8"))
+            print(self.client_address)
+        except:
+            print("send_error")
+            self.send_error(404)
+
+    def serv_user(self):
         chopped_self = urlparse(self.path)
         print(chopped_self)
         if (chopped_self.query):
@@ -56,7 +89,7 @@ class MyServer(BaseHTTPRequestHandler):
             query_dict = dict(qc.split("=") for qc in query_self.split("&"))
             print( query_dict)
             #building the select statemanet
-            select_string = "SELECT * FROM modules WHERE "
+            select_string = "SELECT * FROM user WHERE "
             print (select_string)
             i = 0
             for key in query_dict:
@@ -69,56 +102,17 @@ class MyServer(BaseHTTPRequestHandler):
             print (select_string)
             replyJSON = MyServer.execute_select(select_string)
         else:
-            replyJSON = MyServer.execute_select('SELECT * FROM modules;')
             print("hi")
-        print('SERVING module 200')
+            replyJSON = MyServer.execute_select('SELECT * FROM user;')
+                
+        print('SERVING User 200')
         self.send_response(200)
         self.send_header("Content-type", "JSON")
         self.end_headers()
         self.wfile.write(bytes(replyJSON, "utf-8"))
         print(self.client_address)
-        print(self.path)
-    """try:
-            path = Path(__file__).parent / "module1.json"
-            file_to_open = open(path).read()
-            chopped_self = urlparse(self.path)
-            print(chopped_self)
-            if (chopped_self.query):
-                query_self = chopped_self.query
-                query_dict = dict(qc.split("=") for qc in query_self.split("&"))
-                print( query_dict)
-                #building the select statemanet
-                select_string = "SELECT * FROM module WHERE "
-                print (select_string)
-                i = 0
-                for key in query_dict:
-                    print("in Key Value loop")
-                    if (i != 0):
-                        select_string = select_string + " AND "
-                    select_string = select_string + key + " = " + query_dict[key]
-                    i=+ 1
-                print (select_string)
-                MyServer.execute_select(select_string)
-
-            print('SERVING module 200')
-            self.send_response(200)
-            self.send_header("Content-type", "JSON")
-            self.end_headers()
-            self.wfile.write(bytes(file_to_open, "utf-8"))
-        except:
-            print("send_error")
-            self.send_error(404)
-      """
-      
-    def serv_users(self):
-        print('SERVING USRS 200')
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        self.end_headers()
-        self.wfile.write(bytes("Users", "utf-8"))
-        print(self.client_address)
-        print(self.path)
-
+     
+        
     def section_not_found():
 
         print('SECTION NOT FOUND ERROR 404')
