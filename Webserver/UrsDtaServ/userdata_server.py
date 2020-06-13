@@ -142,7 +142,7 @@ class MyServer(BaseHTTPRequestHandler):
         #for x in testerg:
             #print (x)
         print("end of fetch test-----------------------------------------")
-        print("ioudehasfgiuosdfghiöh")
+        print("ioudehasfgiuosdfghih")
         print(cursor.description)
         desc=cursor.description
         print(type(desc[0]))
