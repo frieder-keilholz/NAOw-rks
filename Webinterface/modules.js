@@ -11,7 +11,7 @@ function loadModules(userId){
             });
         }
     }
-    xhttp.open("GET","192.168.2.168:42030/user_module?user_id="+userId+"",true);
+    xhttp.open("GET","192.168.2.168:42030/user_modules?user_id="+userId+"",true);
     xhttp.send();
 }
 
@@ -23,7 +23,7 @@ function loadModule(moduleId){
             addModuleCard(moduleJSON);
         }
     }
-    xhttp.open("GET","192.168.2.168:42030/module?module_id="+moduleId+"",true);
+    xhttp.open("GET","192.168.2.168:42030/module?modules_id="+moduleId+"",true);
     xhttp.send();
 }
 
