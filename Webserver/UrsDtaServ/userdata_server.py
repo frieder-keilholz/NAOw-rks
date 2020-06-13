@@ -12,9 +12,7 @@ class MyServer(BaseHTTPRequestHandler):
         
         chopped_self = urlparse(self.path)
         print(chopped_self)
-        query_self = chopped_self.query
-        query_dict = dict(qc.split("=") for qc in query_self.split("&"))
-        print( query_dict)
+        
         if chopped_self.path == '/':
             MyServer.serv_test(self)
         elif chopped_self.path =='/modules':
@@ -41,19 +39,29 @@ class MyServer(BaseHTTPRequestHandler):
         print(self.path)
 
     def serv_modules(self):
-        print('SERVING modules 200')
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        self.end_headers()
-        self.wfile.write(bytes("modules", "utf-8"))
+        file_to_open = open("D:\\vs_repos\\nao_wrks\\Webserver\\UrsDtaServ\\module1.json").read()
+        try:
+            
+            print('SERVING modules 200')
+            self.send_response(200)
+            self.send_header("Content-type", "JSON")
+            self.end_headers()
+            self.wfile.write(bytes(file_to_open, "utf-8"))
+        except:
+            self.send_error(404)
+
         print(self.client_address)
         print(self.path)
 
     def section_not_found():
         print('SECTION NOT FOUND ERROR 404')
         
-         
-
+#code for query work
+"""
+query_self = chopped_self.query
+        query_dict = dict(qc.split("=") for qc in query_self.split("&"))
+        print( query_dict)
+"""
 
 
 
