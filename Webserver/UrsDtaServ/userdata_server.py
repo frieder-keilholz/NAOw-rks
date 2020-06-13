@@ -5,6 +5,7 @@ import mysql.connector as mariaDB
 from urllib.parse import urlparse
 from pathlib import Path
 import itertools
+import json
 
 
 
@@ -66,13 +67,13 @@ class MyServer(BaseHTTPRequestHandler):
                 i=+ 1
             select_string = select_string + ";"
             print (select_string)
-            MyServer.execute_select(select_string)
+            replyJSON = MyServer.execute_select(select_string)
 
         print('SERVING modules 200')
         self.send_response(200)
         self.send_header("Content-type", "JSON")
         self.end_headers()
-        self.wfile.write(bytes(file_to_open, "utf-8"))
+        self.wfile.write(bytes(replyJSON, "utf-8"))
         print(self.client_address)
         print(self.path)
     """try:
@@ -137,33 +138,38 @@ class MyServer(BaseHTTPRequestHandler):
         SQLBefehl = selcetString
         test = cursor.execute(SQLBefehl)
         print("testing fetch all-----------------------------------------")
-        testerg = test.fetchall()
-        for x in testerg:
-            print (x)
+        #testerg = test.fetchall()
+        #for x in testerg:
+            #print (x)
         print("end of fetch test-----------------------------------------")
+        print("ioudehasfgiuosdfghiöh")
+        print(cursor.description)
+        desc=cursor.description
+        print(type(desc[0]))
+        print("=-=-=-=-=")
 
+        listOfDicts = []
         # Durchlaufen der Ergebnisse
         row=cursor.fetchone()
+
         while (row!=None):
             print(row)
             i = len(row)
-            print("len of row")
-            print(i)
             i-=1
+            tempdict={}
             while i >= 0:
-                print("reciveWhile")
-                print(i)
-                print(row[i])
                 if(row[i]):
-
                     print(row[i])
+                    tempdict.update({desc[i][0] : row[i].__str__()})
                 i-=1
-            row = cursor.fetchone()    
-
+            listOfDicts.append(tempdict)
+            row = cursor.fetchone()
+        print(listOfDicts)
         # Ende der Verarbeitung
         cursor.close()
         # Abmelden
         con.disconnect()
+        return json.dumps(listOfDicts)
 
 #code for query work
 """
