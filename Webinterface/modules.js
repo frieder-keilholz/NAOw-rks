@@ -56,12 +56,12 @@ function addModuleCard(moduleJSON){
     cardBodyBtnDetails.onclick = "showDetails("+moduleJSON.module_id+")";
     cardBodyBtnDetails.classList = "btn btn-primary";
     cardBodyBtnDetails.innerHTML = "Details";
-    card.appendChild(cardBodyBtnDetails);
+    cardBody.appendChild(cardBodyBtnDetails);
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
     cardBodyBtnExport.innerHTML = "Export";
-    card.appendChild(cardBodyBtnExport);
+    cardBody.appendChild(cardBodyBtnExport);
     card.appendChild(cardBody);
 
     var boxCard = document.createElement("div");
