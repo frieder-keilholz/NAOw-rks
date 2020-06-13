@@ -54,7 +54,7 @@ function addModuleCard(moduleJSON){
     cardBody.appendChild(cardBodyDetails);
     var cardBodyBtnDetails = document.createElement("button");
     cardBodyBtnDetails.onclick = "showDetails("+moduleJSON.module_id+")";
-    cardBodyBtnDetails.classList = "btn btn-primary";
+    cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
     cardBody.appendChild(cardBodyBtnDetails);
     var cardBodyBtnExport = document.createElement("button");
