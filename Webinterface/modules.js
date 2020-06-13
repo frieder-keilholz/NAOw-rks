@@ -1,3 +1,5 @@
+loadModule(1);
+
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
@@ -9,7 +11,7 @@ function loadModules(userId){
             });
         }
     }
-    xhttp.open("GET","192.168.2.168:42030/user_module?user_id="+userId+"",true);
+    xhttp.open("GET","http://192.168.2.168:8080/user_module?user_id="+userId+"",true);
     xhttp.send();
 }
 
@@ -21,7 +23,7 @@ function loadModule(moduleId){
             addModuleCard(moduleJSON);
         }
     }
-    xhttp.open("GET","192.168.2.168:42030/module?module_id="+moduleId+"",true);
+    xhttp.open("GET","http://192.168.2.168:8080/modules?module_id="+moduleId+"",true);
     xhttp.send();
 }
 
