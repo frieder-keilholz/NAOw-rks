@@ -1,4 +1,4 @@
-showModule(1);
+loadModule(1);
 
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
