@@ -33,6 +33,7 @@ function addModuleCard(moduleJSON){
     cardImg.src = "images/"+moduleJSON.module_img_name;
     card.appendChild(cardImg);
     var cardBody = document.createElement("div");
+    cardBody.classList = "card-body";
     var cardBodyTitle = document.createElement("h5");
     cardBodyTitle.innerHTML = moduleJSON.module_name;
     cardBody.appendChild(cardBodyTitle);
