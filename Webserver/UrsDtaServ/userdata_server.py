@@ -1,7 +1,12 @@
 # Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
+import mysql.connector as mariaDB
 from urllib.parse import urlparse
+from pathlib import Path
+import itertools
+
+
 
 
 hostName = "localhost"
@@ -16,6 +21,8 @@ class MyServer(BaseHTTPRequestHandler):
         if chopped_self.path == '/':
             MyServer.serv_test(self)
         elif chopped_self.path =='/modules':
+            MyServer.serv_modules(self)
+        elif chopped_self.path =='/users':
             MyServer.serv_modules(self)
         else:
             print(chopped_self.path)
@@ -39,31 +46,131 @@ class MyServer(BaseHTTPRequestHandler):
         print(self.path)
 
     def serv_modules(self):
-        file_to_open = open("D:\\vs_repos\\nao_wrks\\Webserver\\UrsDtaServ\\module1.json").read()
-        try:
-            
+        path = Path(__file__).parent / "module1.json"
+        file_to_open = open(path).read()
+        chopped_self = urlparse(self.path)
+        print(chopped_self)
+        if (chopped_self.query):
+            query_self = chopped_self.query
+            query_dict = dict(qc.split("=") for qc in query_self.split("&"))
+            print( query_dict)
+            #building the select statemanet
+            select_string = "SELECT * FROM modules WHERE "
+            print (select_string)
+            i = 0
+            for key in query_dict:
+                print("in Key Value loop")
+                if (i != 0):
+                    select_string = select_string + " AND "
+                select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
+                i=+ 1
+            select_string = select_string + ";"
+            print (select_string)
+            MyServer.execute_select(select_string)
+
+        print('SERVING modules 200')
+        self.send_response(200)
+        self.send_header("Content-type", "JSON")
+        self.end_headers()
+        self.wfile.write(bytes(file_to_open, "utf-8"))
+        print(self.client_address)
+        print(self.path)
+    """try:
+            path = Path(__file__).parent / "module1.json"
+            file_to_open = open(path).read()
+            chopped_self = urlparse(self.path)
+            print(chopped_self)
+            if (chopped_self.query):
+                query_self = chopped_self.query
+                query_dict = dict(qc.split("=") for qc in query_self.split("&"))
+                print( query_dict)
+                #building the select statemanet
+                select_string = "SELECT * FROM modules WHERE "
+                print (select_string)
+                i = 0
+                for key in query_dict:
+                    print("in Key Value loop")
+                    if (i != 0):
+                        select_string = select_string + " AND "
+                    select_string = select_string + key + " = " + query_dict[key]
+                    i=+ 1
+                print (select_string)
+                MyServer.execute_select(select_string)
+
             print('SERVING modules 200')
             self.send_response(200)
             self.send_header("Content-type", "JSON")
             self.end_headers()
             self.wfile.write(bytes(file_to_open, "utf-8"))
         except:
+            print("send_errör")
             self.send_error(404)
-
+      """
+      
+    def serv_users(self):
+        print('SERVING USRS 200')
+        self.send_response(200)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(bytes("Users", "utf-8"))
         print(self.client_address)
         print(self.path)
 
     def section_not_found():
+
         print('SECTION NOT FOUND ERROR 404')
         
+    def execute_select(selcetString):
+        Servername = '192.168.2.168' 
+        Benutzer   = 'development'
+        Passwort   = 'dev'
+        Datenbank  = 'naoworks'
+
+        # connect to the mariaDB
+
+        con = mariaDB.connect(host='192.168.2.168', user = 'development',password='dev',database='naoworks')
+
+
+
+        # Exicute SQL command
+        cursor = con.cursor()
+        SQLBefehl = selcetString
+        test = cursor.execute(SQLBefehl)
+        print("testing fetch all-----------------------------------------")
+        testerg = test.fetchall()
+        for x in testerg:
+            print (x)
+        print("end of fetch test-----------------------------------------")
+
+        # Durchlaufen der Ergebnisse
+        row=cursor.fetchone()
+        while (row!=None):
+            print(row)
+            i = len(row)
+            print("len of row")
+            print(i)
+            i-=1
+            while i >= 0:
+                print("reciveWhile")
+                print(i)
+                print(row[i])
+                if(row[i]):
+
+                    print(row[i])
+                i-=1
+            row = cursor.fetchone()    
+
+        # Ende der Verarbeitung
+        cursor.close()
+        # Abmelden
+        con.disconnect()
+
 #code for query work
 """
 query_self = chopped_self.query
         query_dict = dict(qc.split("=") for qc in query_self.split("&"))
         print( query_dict)
 """
-
-
 
 if __name__ == "__main__":        
     webServer = HTTPServer((hostName, serverPort), MyServer)

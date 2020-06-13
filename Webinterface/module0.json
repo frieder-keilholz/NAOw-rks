@@ -2,7 +2,7 @@
     "module_name":"Hello NAO",
     "module_id":0,
     "description":" NAO stellt sich vor ",
-    "class":"1-6",
+    "class-level":"1-6",
     "subject":"Einführung NAO",
     "created_by":{
         "user_id":0,
