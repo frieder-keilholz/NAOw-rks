@@ -27,7 +27,7 @@ function loadModule(moduleId){
 
 function addModuleCard(moduleJSON){
     var card = document.createElement("div");
-    card.classList = "card border-secondary";
+    card.classList = "card border-primary";
     var cardImg = document.createElement("img");
     cardImg.classList = "card-img-top cardimg";
     cardImg.src = "images/"+moduleJSON.module_img_name;
