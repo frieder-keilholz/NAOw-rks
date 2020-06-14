@@ -90,6 +90,7 @@ function switch2detailsPage(moduleJSON){
     console.log(moduleJSON);
     console.log("switch page to details page");
     loadHTML('details', showDetails, moduleJSON);
+    setNavbar();
     //showDetails(moduleJSON); (in loadHTML)
 }
 
