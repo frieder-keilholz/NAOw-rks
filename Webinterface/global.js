@@ -44,6 +44,7 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
 }
 function switch2homePage(){
     loadHTML('index');
+    setNavbar();
 }
 
 // Home-Seite
@@ -51,6 +52,7 @@ function switch2modulePage(){
     let userId = user.user_id;
     loadHTML('modules');
     loadModules(userId);
+    setNavbar();
 }
 
 // Modul-Übersicht-Seite
@@ -184,4 +186,8 @@ function loadUserJSON(userId, callback){
     }
     xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
     xhttp.send();
+}
+
+function setNavbar(){
+    document.getElementById("navbar_name").innerHTML = user.user_firstname + " "+user.user_lastname;
 }
