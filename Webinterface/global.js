@@ -3,7 +3,7 @@ var user;
 function setUser(userJSON){
     user = userJSON;
 }
-loadUserJSON(1);
+loadUserJSON(1,setUser);
 
 // Home-Seite
 function switch2modulePage(userId){
