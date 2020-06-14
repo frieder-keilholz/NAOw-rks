@@ -100,7 +100,7 @@ class MyServer(BaseHTTPRequestHandler):
             else:
                 print("hi")
                 replyJSON = MyServer.execute_select('SELECT * FROM user;')
-                
+            print(type(replyJSON))    
             print('SERVING User 200')
             self.send_response(200)
             self.send_header("Content-type", "JSON")
