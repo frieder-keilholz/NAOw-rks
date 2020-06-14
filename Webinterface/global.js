@@ -5,7 +5,9 @@ function loadModules(userId){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             var modulesOfUser = JSON.parse(this.responseText);
+            console.log(modulesOfUser);
             modulesOfUser.forEach(function(module){
+                console.log(modules);
                 console.log(module);
                 showModule(module.module_id);
             });
