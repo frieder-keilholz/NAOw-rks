@@ -13,6 +13,7 @@ hostName = "localhost"
 serverPort = 42031
 
 class MyServer(BaseHTTPRequestHandler):
+    #decyphers the request
     def do_GET(self):
         chopped_self = urlparse(self.path)
         print(chopped_self)
@@ -26,7 +27,7 @@ class MyServer(BaseHTTPRequestHandler):
             print(chopped_self.path)
             self.send_error(404)
             print('dummy')
-
+    #is called if no section is given
     def serv_test(self):
         print('SERVING Test 200')
         self.send_response(200)
@@ -34,7 +35,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes("This is a Test", "utf-8"))
         print(self.client_address)
-
+    #replys with the muduls assigned for the nao
     def serv_assinged_modules(self):
 
         print("Assingned_modules_serv-----------------------------------------------------------------")
@@ -58,7 +59,7 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-
+    #builds the giant Jason for the nao
     def serv_modulpackage(self):
         print("module_Package_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
@@ -95,7 +96,7 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-
+    #exicutes a select on our MariaDB
     def execute_select(selcetString):
         Servername = '192.168.2.168' 
         Benutzer   = 'development'
@@ -131,7 +132,7 @@ class MyServer(BaseHTTPRequestHandler):
         # Abmelden
         con.disconnect()
         return json.dumps(listOfDicts)
-
+#initializes the Webserver
 if __name__ == "__main__":        
     webServer = HTTPServer((hostName, serverPort), MyServer)
     print("Server started http://%s:%s" % (hostName, serverPort))
