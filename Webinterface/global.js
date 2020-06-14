@@ -4,7 +4,7 @@ function switch2modulePage(userId){
     loadModules(userId);
 }
 
-// Modul-Übersicht
+// Modul-Übersicht-Seite
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
@@ -35,6 +35,11 @@ function loadModule(moduleId){
     xhttp.send();
 }
 
+function switch2detailsPage(moduleJSON){
+    loadHTML('details');
+    showDetails(moduleJSON);
+}
+
 function addModuleCard(moduleJSON){
     var card = document.createElement("div");
     card.classList = "card border-primary";
@@ -63,7 +68,7 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.appendChild(cardBodyDetailsSubject);
     cardBody.appendChild(cardBodyDetails);
     var cardBodyBtnDetails = document.createElement("button");
-    cardBodyBtnDetails.onclick = "showDetails("+moduleJSON.module_id+")";
+    cardBodyBtnDetails.onclick = "switch2detailsPage("+moduleJSON+")";
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
     cardBody.appendChild(cardBodyBtnDetails);
@@ -80,6 +85,10 @@ function addModuleCard(moduleJSON){
     document.getElementById("modules").appendChild(boxCard);
 }
 
+// Modul-Detail-Seite
+function showDetails(moduleJSON){
+
+}
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
 function loadHTML(fileName){
