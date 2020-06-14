@@ -91,7 +91,7 @@ function addModuleCard(moduleJSON){
 // Modul-Detail-Seite
 function showDetails(moduleJSON){
     //console.log(moduleJSON);
-    console.log("POINT1");
+    //console.log("POINT1");
     
     document.getElementById("module_title").innerHTML = moduleJSON.module_name;
     document.getElementById("module_description").innerHTML = moduleJSON.module_description;
@@ -106,7 +106,7 @@ function loadHTML(fileName, callback, param){
         if (this.readyState!==4) return;
         if (this.status!==200) return; // or whatever error handling you want
         document.getElementById('html_doc').innerHTML= this.responseText;
-        console.log("POINT0");
+        //console.log("POINT0");
         //document.getElementById("home_title").innerText = "TEST :D";
         if(callback){
             callback(param);
