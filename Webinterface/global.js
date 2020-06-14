@@ -8,8 +8,6 @@ loadUserJSON(1,setUser);
 
 // Home-Seite
 function switch2modulePage(){
-    console.log(user);
-    console.log(user.user_id);
     let userId = user.user_id;
     loadHTML('modules');
     loadModules(userId);
@@ -113,7 +111,7 @@ function showDetails(moduleJSON){
     //document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
     loadUserJSON(moduleJSON.module_created_by,function(userJSON){
         console.log(userJSON);
-        document.getElementById("module_created_by").innerHTML = userJSON[0].user_name;
+        document.getElementById("module_created_by").innerHTML = userJSON.user_name;
     });
 }
 
@@ -140,7 +138,7 @@ function loadUserJSON(userId, callback){
         if(this.readyState == 4 && this.status == 200){
             var userJSON = JSON.parse(this.responseText);
             console.log(userJSON);
-            callback(userJSON);
+            callback(userJSON[0]);
         }
     }
     xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
