@@ -73,7 +73,6 @@ function addModuleCard(moduleJSON){
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
     cardBodyBtnDetails.onclick = function(){alert("teststeset");};
-    cardBody.appendChild(cardBodyBtnDetails);
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
