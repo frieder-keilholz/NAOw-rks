@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" id="html_doc">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
 
     <h1 class="m-3">LogIn</h1>
 
-    <form class="form-signin" onsubmit="tryLogin()" action="/" method="POST">
+    <form class="form-signin" onsubmit="" action="/" method="POST">
         <div style="justify-content: center; align-items: center; display: flex;">
             <img class="mb-4" src="images/naos.jpeg" alt="">
         </div>
@@ -32,7 +32,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" onclick="tryLogin()" >Sign in</button>
         <p class="mt-5 mb-3 text-muted">© NAOwörks 2020</p>
     </form>
 </body>
