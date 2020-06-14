@@ -1,3 +1,10 @@
+// Globale Variablen
+var user;
+function setUser(userJSON){
+    user = userJSON;
+}
+loadUserJSON(1);
+
 // Home-Seite
 function switch2modulePage(userId){
     loadHTML('modules');
@@ -126,6 +133,7 @@ function loadUserJSON(userId, callback){
         if(this.readyState == 4 && this.status == 200){
             var userJSON = JSON.parse(this.responseText);
             console.log(userJSON);
+            user = userJSON;
         }
     }
     xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
