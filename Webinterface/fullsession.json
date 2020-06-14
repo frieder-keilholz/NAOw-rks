@@ -1,6 +1,6 @@
 {
   "module_name":"Greetings, I'm NAO",
-  "module_id":1;
+  "module_id":5,
   "description":"NAO erzählt den Kindern, wie sie mit ihm umgehen müssen",
   "class-level":"1-6",
   "subject":"Einführung NAO",
