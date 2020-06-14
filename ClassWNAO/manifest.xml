@@ -22,17 +22,5 @@
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
-  <behaviorContent path="NAOw-rks/ClassWNAO/GreetClass">
-   <nature>interactive</nature>
-   <permissions/>
-  </behaviorContent>
-  <behaviorContent path="NAOw-rks/ClassWNAO/ReadAnswer">
-   <nature>interactive</nature>
-   <permissions/>
-  </behaviorContent>
-  <behaviorContent path="NAOw-rks/ClassWNAO/test">
-   <nature>interactive</nature>
-   <permissions/>
-  </behaviorContent>
  </contents>
 </package>
