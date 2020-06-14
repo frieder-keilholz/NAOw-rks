@@ -6,7 +6,8 @@ function setUser(userJSON){
 loadUserJSON(1,setUser);
 
 // Home-Seite
-function switch2modulePage(userId){
+function switch2modulePage(){
+    userId = user.user_id;
     loadHTML('modules');
     loadModules(userId);
 }
