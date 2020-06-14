@@ -32,7 +32,7 @@ class MyServer(BaseHTTPRequestHandler):
         elif chopped_self.path =='/tasks':
             MyServer.serv_tasks(self)
         elif chopped_self.path =='/user_module':
-            MyServer.serv_module(self)
+            MyServer.serv_user_module(self)
         else:
             print(chopped_self.path)
             #self.send_response(404)
