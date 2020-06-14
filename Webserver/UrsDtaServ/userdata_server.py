@@ -24,7 +24,7 @@ class MyServer(BaseHTTPRequestHandler):
         elif chopped_self.path =='/module':
             MyServer.serv_module(self)
         elif chopped_self.path =='/user':
-            MyServer.serv_answers(self)
+            MyServer.serv_user(self)
         elif chopped_self.path =='/answers':
             MyServer.serv_answers(self)
         elif chopped_self.path =='/user':
