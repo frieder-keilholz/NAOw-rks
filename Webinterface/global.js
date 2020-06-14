@@ -4,7 +4,7 @@ function setUser(userJSON){
     user = userJSON;
    
 }
-loadUserJSON(1,setUser);
+loadUserJSON(3,setUser);
 
 // Home-Seite
 function switch2modulePage(){
