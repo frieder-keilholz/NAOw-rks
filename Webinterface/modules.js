@@ -48,7 +48,7 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.classList = "list-group list-group-flush";
     var cardBodyDetailsClassLVL = document.createElement("li");
     cardBodyDetailsClassLVL.classList = "list-group-item";
-    cardBodyDetailsClassLVL.innerHTML = moduleJSON.class_lvl;
+    cardBodyDetailsClassLVL.innerHTML = moduleJSON.module_class_lvl;
     var cardBodyDetailsSubject = document.createElement("li");
     cardBodyDetailsSubject.classList = "list-group-item";
     cardBodyDetailsSubject.innerHTML = moduleJSON.module_subject;
