@@ -1,3 +1,10 @@
+// Globale Variablen
+var user;
+function setUser(userJSON){
+    user = userJSON;
+}
+loadUserJSON(1,setUser);
+
 // Home-Seite
 function switch2modulePage(userId){
     loadHTML('modules');
@@ -95,7 +102,15 @@ function showDetails(moduleJSON){
     
     document.getElementById("module_title").innerHTML = moduleJSON.module_name;
     document.getElementById("module_description").innerHTML = moduleJSON.module_description;
-
+    document.getElementById("module_class_level").innerHTML = moduleJSON.module_class_lvl;
+    document.getElementById("module_id").innerHTML = moduleJSON.module_id;
+    document.getElementById("module_subject").innerHTML = moduleJSON.module_subject;
+    document.getElementById("module_created_at").innerHTML = moduleJSON.module_created_at;
+    //document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
+    loadUserJSON(moduleJSON.module_created_by,function(userJSON){
+        console.log(userJSON);
+        document.getElementById("module_created_by").innerHTML = userJSON[0].user_name;
+    });
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
@@ -113,4 +128,17 @@ function loadHTML(fileName, callback, param){
         }
     };
     xhr.send();
+}
+
+function loadUserJSON(userId, callback){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var userJSON = JSON.parse(this.responseText);
+            console.log(userJSON);
+            callback(userJSON);
+        }
+    }
+    xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
+    xhttp.send();
 }
