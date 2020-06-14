@@ -20,7 +20,8 @@
 
     <form class="form-signin" onsubmit="" action="/" method="POST">
         <div style="justify-content: center; align-items: center; display: flex;">
-            <img class="mb-4" src="images/naos.jpeg" alt="">
+            <img class="mb-4 moduleImg" src="images/naos.jpeg" alt="">
+            
         </div>
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label id="input_mail" for="inputEmail" class="sr-only">Email address</label>
@@ -32,7 +33,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" onclick="tryLogin()" >Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="tryLogin()" >Sign in</button>
         <p class="mt-5 mb-3 text-muted">© NAOwörks 2020</p>
     </form>
 </body>

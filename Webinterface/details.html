@@ -13,7 +13,7 @@
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" onclick="switch2homePage()">NAOw&oumlrks Webinterface</a>
         <div class="form-inline my-2 my-lg-0">
-            <span class="navbar-brand h2 ml-3 mb-0">Martina Musterfrau</span>
+            <span id="navbar_name" class="navbar-brand h2 ml-3 mb-0"></span>
             <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="window.location='login.html'">Abmelden</button>
         </div>
     </nav>
@@ -23,7 +23,8 @@
                 <div class="col-md-3">
                     <div class="profile-img">
                         <!--img src="http://www.comoffice.org:31039/images/nao.jpeg" alt="" /-->
-                        <img id="module_img" src="images/naos.jpeg" alt="">
+                        <button class= "btn btn-primary" onclick="switch2modulePage()">&laquo; Alle Module</button>
+                        <img id="module_img" class="moduleImg mt-2" src="images/naos.jpeg" alt="">
                         
                     </div>
                 </div>
@@ -93,7 +94,7 @@
                                     <label>Anzahl von Aufgaben</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>0</p>
+                                    <p id="module_numOfTasks">0</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -114,9 +115,9 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
+                            <!--div class="row">
                                 <div class="col-md-6">
-                                    <label>Fragestellung:</label>
+                                    <label>Aufgabe:</label>
                                 </div>
                                 <div class="col-md-6">
                                     <a href="task.html">Anzeigen</a>
@@ -128,122 +129,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p>-</p>
-                                </div>
+                                </div-->
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Fragestellung:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="task.html">Anzeigen</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>-</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>-</p>
-                                </div>
-                            </div>
-
-                            
                         </div>
                     </div>
                 </div>

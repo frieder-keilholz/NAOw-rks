@@ -7,7 +7,9 @@
         <BehaviorDescription name="behavior" src="ReadAnswer" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs />
-    <Resources />
+    <Resources>
+        <File name="fullsession" src="GreetClass/fullsession.json" />
+    </Resources>
     <Topics />
     <IgnoredPaths />
 </Package>

@@ -2,7 +2,6 @@
 var user;
 function setUser(userJSON){
     user = userJSON;
-   
 }
 //loadUserJSON(1,setUser);
 
@@ -12,9 +11,9 @@ function tryLogin(){
     let pwd = document.getElementById("inputPassword").value;
     checkUserCredentails(mail, pwd, login, loginFailed);
 }
-function login(){
-    loadUserJSON(1,setUser);
-    switch2homePage();
+function login(userId){
+    loadUserJSON(userId,function(userJSON){setUser(userJSON); switch2homePage()});
+    //switch2homePage();
 }
 function loginFailed(){
     alert("Nutzername oder Passwort falsch.");
@@ -28,7 +27,7 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
                 callback_fail();
             }
             if(userJSON.user_password === pwd && userJSON.user_email === mail){
-                callback_success();
+                callback_success(userJSON.user_id);
             }else{
                 callback_fail();
             }
@@ -43,14 +42,17 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
     xhttp.send();
 }
 function switch2homePage(){
-    loadHTML('index');
+    loadHTML('index',setNavbar);
 }
 
 // Home-Seite
 function switch2modulePage(){
     let userId = user.user_id;
-    loadHTML('modules');
+    loadHTML('modules',setNavbar);
     loadModules(userId);
+    console.log("s2mods");
+    console.log(user);
+    
 }
 
 // Modul-Übersicht-Seite
@@ -88,6 +90,7 @@ function switch2detailsPage(moduleJSON){
     console.log(moduleJSON);
     console.log("switch page to details page");
     loadHTML('details', showDetails, moduleJSON);
+    
     //showDetails(moduleJSON); (in loadHTML)
 }
 
@@ -141,6 +144,7 @@ function addModuleCard(moduleJSON){
 function showDetails(moduleJSON){
     //console.log(moduleJSON);
     //console.log("POINT1");
+    setNavbar();
     
     document.getElementById("module_title").innerHTML = moduleJSON.module_name;
     document.getElementById("module_description").innerHTML = moduleJSON.module_description;
@@ -154,6 +158,56 @@ function showDetails(moduleJSON){
         document.getElementById("module_created_by").innerHTML = userJSON.user_name;
     });
     document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
+    loadTasks(moduleJSON.module_id, function(tasksJSON){
+        document.getElementById("module_numOfTasks").innerHTML = tasksJSON.length;
+        let tasksDiv = document.getElementById("tasks");
+        let i = 1;
+        tasksJSON.forEach(function(task){
+            console.log(task);
+            let tasksDivRow = document.createElement("div");
+            tasksDivRow.classList += " row";
+            tasksDiv.appendChild(tasksDivRow);
+            let tasksDivRowDiv = document.createElement("div");
+            tasksDivRowDiv.classList += " col-md-6";
+            let tasksDivRowDivLabel = document.createElement("label");
+            tasksDivRowDivLabel.innerHTML = "Aufgabe "+ i +":";
+            i+=1;
+            tasksDivRowDiv.appendChild(tasksDivRowDivLabel);
+            tasksDivRow.appendChild(tasksDivRowDiv);
+            let tasksDivRowDiv12 = document.createElement("div");
+            tasksDivRowDiv12.classList += " col-md-6";
+            
+            tasksDivRow.appendChild(tasksDivRowDiv12);
+
+            let tasksDivRow2 = document.createElement("div");
+            tasksDivRow2.classList += " row";
+            tasksDiv.appendChild(tasksDivRow2);
+            let tasksDivRowDiv2 = document.createElement("div");
+            tasksDivRowDiv2.classList += " col-md-6";
+            let tasksDivRowDivLabel2 = document.createElement("label");
+            tasksDivRowDivLabel2.innerHTML = task.task_title;
+            tasksDivRowDiv2.appendChild(tasksDivRowDivLabel2);
+            tasksDivRow2.appendChild(tasksDivRowDiv2);
+            let tasksDivRowDiv22 = document.createElement("div");
+            tasksDivRowDiv22.classList += " col-md-6";
+            let showLink = document.createElement("a");
+            showLink.innerHTML = "Anzeigen";
+            tasksDivRowDiv22.appendChild(showLink);
+            tasksDivRow2.appendChild(tasksDivRowDiv22);
+        })
+    });
+}
+function loadTasks(moduleId, callback){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var tasksJSON = JSON.parse(this.responseText);
+            console.log(tasksJSON);
+            callback(tasksJSON);
+        }
+    }
+    xhttp.open("GET","http://192.168.2.168:8080/tasks?module_id="+moduleId,true);
+    xhttp.send();
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
@@ -177,11 +231,17 @@ function loadUserJSON(userId, callback){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            var userJSON = JSON.parse(this.responseText);
+            var userJSON = JSON.parse(this.responseText)[0];
             console.log(userJSON);
-            callback(userJSON[0]);
+            callback(userJSON);
         }
     }
     xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
     xhttp.send();
+}
+
+function setNavbar(){
+    console.log("user:");
+    console.log(user);
+    document.getElementById("navbar_name").innerHTML = user.user_firstname + " "+user.user_lastname;
 }
