@@ -158,17 +158,22 @@ function showDetails(moduleJSON){
         document.getElementById("module_created_by").innerHTML = userJSON.user_name;
     });
     document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
+    loadTasks(moduleJSON.module_id, function(tasksJSON){
+        tasksJSON.forEach(function(task){
+            console.log(task);
+        })
+    });
 }
-function loadTasks(){
+function loadTasks(moduleId, callback){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            var userJSON = JSON.parse(this.responseText);
-            console.log(userJSON);
-            callback(userJSON[0]);
+            var tasksJSON = JSON.parse(this.responseText);
+            console.log(tasksJSON);
+            callback(tasksJSON);
         }
     }
-    xhttp.open("GET","http://192.168.2.168:8080/tasks?module_id=,true");
+    xhttp.open("GET","http://192.168.2.168:8080/tasks?module_id="+moduleId,true);
     xhttp.send();
 }
 
