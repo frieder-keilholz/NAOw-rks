@@ -12,8 +12,8 @@ function tryLogin(){
     checkUserCredentails(mail, pwd, login, loginFailed);
 }
 function login(userId){
-    loadUserJSON(userId,setUser);
-    switch2homePage();
+    loadUserJSON(userId,function(userJSON){setUser(userJSON); switch2homePage()});
+    //switch2homePage();
 }
 function loginFailed(){
     alert("Nutzername oder Passwort falsch.");
