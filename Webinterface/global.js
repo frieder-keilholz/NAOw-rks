@@ -173,6 +173,9 @@ function showDetails(moduleJSON){
             tasksDivRow.appendChild(tasksDivRowDiv);
             let tasksDivRowDiv12 = document.createElement("div");
             tasksDivRowDiv12.classList += " col-md-6";
+            let showLink = document.createElement("a");
+            showLink.innerHTML = "Anzeigen";
+            tasksDivRowDiv12.appendChild(showLink);
             tasksDivRow.appendChild(tasksDivRowDiv12);
 
             let tasksDivRow2 = document.createElement("div");
