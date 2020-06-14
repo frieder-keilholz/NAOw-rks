@@ -1,0 +1,42 @@
+{
+    "module_name":"Hello NAO",
+    "module_id":0,
+    "description":" NAO stellt sich vor ",
+    "class-level":"1-6",
+    "subject":"Einführung NAO",
+    "created_by":{
+        "user_id":0,
+        "user_name":"Martina Musterfrau"
+    },
+    "created_at":"02-02-2020",
+    "tasks":[
+        {            
+        "title":"Aufgabe 1",
+        "description":"",
+        "task_id":0,
+        "module_name":"Hello NAO",
+        "module_id":0,
+        "introduction":"Beantworte die folgenden Fragen, um dein Wissen um Roboter zu beweisen.",
+        "questions":[
+            {
+                "question":"Wer stellt die NAO Roboter her?",
+                "answers":[
+                {
+                    "id":0,
+                    "symbol":"A",
+                    "text":"Softbank Robotics"
+                },
+                {
+                    "id":1,
+                    "symbol":"B",
+                    "text":"RoboticLab Wildau"
+                },
+                {
+                    "id":2,
+                    "symbol":"C",
+                    "text":"Tesla"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+  "module_name":"Greetings, I'm NAO",
+  "module_id":1;
+  "description":"NAO erzählt den Kindern, wie sie mit ihm umgehen müssen",
+  "class-level":"1-6",
+  "subject":"Einführung NAO",
+  "created_by":{
+      "user_id":0,
+      "user_name":"Martina Musterfrau"
+  },
+  "created_at":"02-02-2020",
+  "greeting": "Guten Morgen. Ich heiße NAO und freue mich schon darauf, euch zu unterrichten. Zusammen lernen wir heute, wie wir miteinander umgehen.",
+  "tasks":[
+      {
+          "title":"Sprechen",
+          "description":"NAO erzählt den Schülern, dass sie ambesten miteinander lernen können, wenn sie leise und ruhig sind.",
+          "id":0,
+          ""
+      }
+  ]
+}
