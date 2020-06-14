@@ -42,10 +42,6 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
     xhttp.send();
 }
 function switch2homePage(){
-    console.log("1");
-    
-    while(!user){}
-    console.log("2");
     loadHTML('index',setNavbar);
 }
 
