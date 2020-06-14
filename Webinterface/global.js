@@ -9,7 +9,7 @@ function loadModules(userId){
             modulesOfUser.forEach(function(module){
                 console.log(modules);
                 console.log(module);
-                showModule(module.module_id);
+                loadModule(module.module_id);
             });
         }
     }
