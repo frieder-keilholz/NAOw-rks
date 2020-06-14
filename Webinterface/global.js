@@ -73,10 +73,10 @@ function addModuleCard(moduleJSON){
     
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
-    cardBodyBtnDetails.onclick = switch2detailsPage(moduleJSON);
+    cardBodyBtnDetails.onclick = "switch2detailsPage(moduleJSON)";
     cardBody.appendChild(cardBodyBtnDetails);
     var cardBodyBtnExport = document.createElement("button");
-    //cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
+    cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
     cardBodyBtnExport.innerHTML = "Export";
     cardBody.appendChild(cardBodyBtnExport);
