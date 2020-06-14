@@ -129,7 +129,7 @@ function addModuleCard(moduleJSON){
     cardBodyBtnDetails.onclick = function(){switch2detailsPage(moduleJSON)};
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
-    cardBodyBtnExport.classList = "btn btn-primary";
+    cardBodyBtnExport.classList = "btn btn-primary mr-1";
     cardBodyBtnExport.innerHTML = "Export";
     cardBody.appendChild(cardBodyBtnExport);
     var cardBodyBtnExport2 = document.createElement("button");
