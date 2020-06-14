@@ -1,4 +1,9 @@
-# Python 3 server for databank access
+"""
+This webserver translates http get requestes
+into select satements for a MariaDB#
+
+@autor Maximilian Hartmann
+"""
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
@@ -13,8 +18,9 @@ import json
 
 hostName = "localhost"
 serverPort = 42030
-
+#is the serverclass
 class MyServer(BaseHTTPRequestHandler):
+    #decyphers the request
     def do_GET(self):
         
         chopped_self = urlparse(self.path)
@@ -42,7 +48,7 @@ class MyServer(BaseHTTPRequestHandler):
         print(self.client_address)
         print(self.path)
 
-
+    #is called if no section is given
     def serv_test(self):
         print('SERVING module 200')
         self.send_response(200)
@@ -50,7 +56,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes("This is a Test", "utf-8"))
         print(self.client_address)
-
+    #serves modules
     def serv_module(self):
         print("modul_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
@@ -78,7 +84,7 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-
+    #serves users
     def serv_user(self):
         print("User_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
@@ -104,7 +110,7 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-
+    #serves answers
     def serv_answers(self):
         print("answer_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
@@ -129,7 +135,7 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-
+    #serves tasks
     def serv_tasks(self):
         print("tasks_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
@@ -154,7 +160,7 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-
+    #serves the user module
     def serv_user_module(self):
         print("user_module_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
@@ -180,41 +186,26 @@ class MyServer(BaseHTTPRequestHandler):
             print("send_error")
             self.send_error(404)
 
+    #is called if a section, that not exists is called
     def section_not_found():
-
+        self.send_error(404)
         print('SECTION NOT FOUND ERROR 404')
         
+    #exicutes a select on our MariaDB
     def execute_select(selcetString):
-        Servername = '192.168.2.168' 
-        Benutzer   = 'development'
-        Passwort   = 'dev'
-        Datenbank  = 'naoworks'
 
         # connect to the mariaDB
 
         con = mariaDB.connect(host='192.168.2.168', user = 'development',password='dev',database='naoworks')
 
-
-
         # Exicute SQL command
         cursor = con.cursor()
         SQLBefehl = selcetString
-        test = cursor.execute(SQLBefehl)
-        print("testing fetch all-----------------------------------------")
-        #testerg = test.fetchall()
-        #for x in testerg:
-            #print (x)
-        print("end of fetch test-----------------------------------------")
-        print("ioudehasfgiuosdfghih")
-        print(cursor.description)
+        cursor.execute(SQLBefehl)
         desc=cursor.description
-        print(type(desc[0]))
-        print("=-=-=-=-=")
-
+        #put results into dictionarys
         listOfDicts = []
-        # Durchlaufen der Ergebnisse
         row=cursor.fetchone()
-
         while (row!=None):
             print(row)
             i = len(row)
@@ -234,6 +225,7 @@ class MyServer(BaseHTTPRequestHandler):
         con.disconnect()
         return json.dumps(listOfDicts)
 
+    #builds the where part of a select statement
     def build_select_string(query_dict):
         i = 0
         select_string =''
@@ -247,13 +239,7 @@ class MyServer(BaseHTTPRequestHandler):
         print (select_string)
         return select_string
 
-#code for query work
-"""
-query_self = chopped_self.query
-        query_dict = dict(qc.split("=") for qc in query_self.split("&"))
-        print( query_dict)
-"""
-
+#initializes the Webserver
 if __name__ == "__main__":        
     webServer = HTTPServer((hostName, serverPort), MyServer)
     print("Server started http://%s:%s" % (hostName, serverPort))
