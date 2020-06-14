@@ -90,7 +90,7 @@ function switch2detailsPage(moduleJSON){
     console.log(moduleJSON);
     console.log("switch page to details page");
     loadHTML('details', showDetails, moduleJSON);
-    setNavbar();
+    
     //showDetails(moduleJSON); (in loadHTML)
 }
 
@@ -144,6 +144,7 @@ function addModuleCard(moduleJSON){
 function showDetails(moduleJSON){
     //console.log(moduleJSON);
     //console.log("POINT1");
+    setNavbar();
     
     document.getElementById("module_title").innerHTML = moduleJSON.module_name;
     document.getElementById("module_description").innerHTML = moduleJSON.module_description;
