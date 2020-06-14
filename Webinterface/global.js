@@ -8,8 +8,8 @@ function setUser(userJSON){
 
 // LogIn-Seite
 function tryLogin(){
-    let mail = document.getElementById("input_mail").value;
-    let pwd = document.getElementById("input_password").value;
+    let mail = document.getElementById("inputEmail").value;
+    let pwd = document.getElementById("inputPassword").value;
     checkUserCredentails(mail, pwd, login, loginFailed);
 }
 function login(){
