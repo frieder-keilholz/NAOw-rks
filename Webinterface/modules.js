@@ -20,6 +20,7 @@ function loadModule(moduleId){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             var moduleJSON = JSON.parse(this.responseText)[0];
+            console.log(moduleJSON)
             addModuleCard(moduleJSON);
         }
     }
