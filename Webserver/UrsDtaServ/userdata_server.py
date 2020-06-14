@@ -46,13 +46,29 @@ class MyServer(BaseHTTPRequestHandler):
 
 
     def serv_test(self):
-        print('SERVING TEST 200')
+        print("modul_serv-----------------------------------------------------------------")
+        chopped_self = urlparse(self.path)
+        print(chopped_self)
+        if (chopped_self.query):
+            query_self = chopped_self.query
+            query_self=query_self
+            print("Querry______Funoo")
+            print(query_self)
+            query_dict = dict(qc.split("=") for qc in query_self.split("&"))
+            print( query_dict)
+            #building the select statemanet
+            select_string = "SELECT * FROM modules WHERE "
+                
+            replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
+        else:
+            replyJSON = MyServer.execute_select('SELECT * FROM modules;')
+            print("hi")
+        print('SERVING module 200')
         self.send_response(200)
-        self.send_header("Content-type", "text/plain")
+        self.send_header("Content-type", "JSON")
         self.end_headers()
-        self.wfile.write(bytes("test", "utf-8"))
+        self.wfile.write(bytes(replyJSON, "utf-8"))
         print(self.client_address)
-        print(self.path)
 
     def serv_module(self):
         print("modul_serv-----------------------------------------------------------------")
@@ -61,21 +77,14 @@ class MyServer(BaseHTTPRequestHandler):
         try:
             if (chopped_self.query):
                 query_self = chopped_self.query
+                query_self=query_self
+                print("Querry______Funoo")
+                print(query_self)
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
                 select_string = "SELECT * FROM modules WHERE "
-                print (select_string)
-                i = 0
-                for key in query_dict:
-                    print("in Key Value loop")
-                    if (i != 0):
-                        select_string = select_string + " AND "
-                    select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
-                    i=+ 1
-                select_string = select_string + ";"
-                print (select_string)
-                replyJSON = MyServer.execute_select(select_string)
+                replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
             else:
                 replyJSON = MyServer.execute_select('SELECT * FROM modules;')
                 print("hi")
@@ -100,17 +109,7 @@ class MyServer(BaseHTTPRequestHandler):
                 print( query_dict)
                 #building the select statemanet
                 select_string = "SELECT * FROM user WHERE "
-                print (select_string)
-                i = 0
-                for key in query_dict:
-                    print("in Key Value loop")
-                    if (i != 0):
-                        select_string = select_string + " AND "
-                    select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
-                    i=+ 1
-                select_string = select_string + ";"
-                print (select_string)
-                replyJSON = MyServer.execute_select(select_string)
+                replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
             else:
                 print("hi")
                 replyJSON = MyServer.execute_select('SELECT * FROM user;')
@@ -136,17 +135,7 @@ class MyServer(BaseHTTPRequestHandler):
                 print( query_dict)
                 #building the select statemanet
                 select_string = "SELECT * FROM answers WHERE "
-                print (select_string)
-                i = 0
-                for key in query_dict:
-                    print("in Key Value loop")
-                    if (i != 0):
-                        select_string = select_string + " AND "
-                    select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
-                    i=+ 1
-                select_string = select_string + ";"
-                print (select_string)
-                replyJSON = MyServer.execute_select(select_string)
+                replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
             else:
                 replyJSON = MyServer.execute_select('SELECT * FROM answers;')
                 print("hi")
@@ -171,17 +160,7 @@ class MyServer(BaseHTTPRequestHandler):
                 print( query_dict)
                 #building the select statemanet
                 select_string = "SELECT * FROM tasks WHERE "
-                print (select_string)
-                i = 0
-                for key in query_dict:
-                    print("in Key Value loop")
-                    if (i != 0):
-                        select_string = select_string + " AND "
-                    select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
-                    i=+ 1
-                select_string = select_string + ";"
-                print (select_string)
-                replyJSON = MyServer.execute_select(select_string)
+                replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
             else:
                 replyJSON = MyServer.execute_select('SELECT * FROM tasks;')
                 print("hi")
@@ -205,18 +184,7 @@ class MyServer(BaseHTTPRequestHandler):
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
-                select_string = "SELECT * FROM user_module WHERE "
-                print (select_string)
-                i = 0
-                for key in query_dict:
-                    print("in Key Value loop")
-                    if (i != 0):
-                        select_string = select_string + " AND "
-                    select_string = select_string + key + " = " +"'" + query_dict[key] + "'"
-                    i=+ 1
-                select_string = select_string + ";"
-                print (select_string)
-                replyJSON = MyServer.execute_select(select_string)
+                replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
             else:
                 replyJSON = MyServer.execute_select('SELECT * FROM user_module;')
                 print("hi")
@@ -283,6 +251,19 @@ class MyServer(BaseHTTPRequestHandler):
         # Abmelden
         con.disconnect()
         return json.dumps(listOfDicts)
+
+    def build_select_string(query_dict):
+        i = 0
+        select_string =''
+        for key in query_dict:
+            print("in Key Value loop")
+            if (i != 0):
+                select_string = select_string + " AND "
+            select_string = select_string + key + " = " +"'" + query_dict[key].replace('%20',' ') + "'"
+            i=+ 1
+        select_string = select_string + ";"
+        print (select_string)
+        return select_string
 
 #code for query work
 """
