@@ -70,7 +70,7 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.appendChild(cardBodyDetailsSubject);
     cardBody.appendChild(cardBodyDetails);
     var cardBodyBtnDetails = document.createElement("button");
-    cardBodyBtnDetails.onclick = "switch2detailsPage("+moduleJSON+");";
+    cardBodyBtnDetails.onclick = "switch2detailsPage(moduleJSON);";
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
     cardBody.appendChild(cardBodyBtnDetails);
