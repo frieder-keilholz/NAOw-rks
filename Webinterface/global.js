@@ -87,7 +87,11 @@ function addModuleCard(moduleJSON){
 
 // Modul-Detail-Seite
 function showDetails(moduleJSON){
-
+    console.log(moduleJSON);
+    
+    document.getElementById("module_title").innerText = moduleJSON.module_name;
+    document.getElementById("modue_description").innerText = moduleJSON.module_description;
+    
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
