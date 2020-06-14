@@ -24,6 +24,9 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             var userJSON = JSON.parse(this.responseText)[0];
+            if(!userJSON.user_password){
+                callback_fail();
+            }
             if(userJSON.user_password === pwd && userJSON.user_email === mail){
                 callback_success();
             }else{
