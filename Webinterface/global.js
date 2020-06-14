@@ -1,3 +1,9 @@
+// Home-Seite
+function switch2modulePage(userId){
+    loadHTML('modules');
+    loadModules(userId);
+}
+
 // Modul-Übersicht
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
