@@ -8,7 +8,7 @@ loadUserJSON(1,setUser);
 
 // Home-Seite
 function switch2modulePage(){
-    console.log(user.user_name);
+    console.log(user);
     console.log(user.user_id);
     let userId = user.user_id;
     loadHTML('modules');
