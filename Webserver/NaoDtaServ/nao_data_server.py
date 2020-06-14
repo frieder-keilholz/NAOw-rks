@@ -16,6 +16,8 @@ class MyServer(BaseHTTPRequestHandler):
             MyServer.serv_test(self)
         elif chopped_self.path == '/modulerq':
             MyServer.serv_modulpackage(self)
+        elif chopped_self.path == '/assigned_modules':
+            MyServer.serv_assinged_modules(self)
         else:
             print(chopped_self.path)
             self.send_error(404)
@@ -29,19 +31,55 @@ class MyServer(BaseHTTPRequestHandler):
         self.wfile.write(bytes("This is a Test", "utf-8"))
         print(self.client_address)
 
-    def serv_modulpackage(self):
-        print("modulPackage_serv-----------------------------------------------------------------")
+    def serv_assinged_modules(self):
+        print("Assingned_modules_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
         print(chopped_self)
         if (chopped_self.query):
             print("yeet")
             query_dict = dict(qc.split("=") for qc in chopped_self.query.split("&"))
-            module_id_dict= json.loads(MyServer.execute_select(" SELECT module_id FROM nao_module_assignment WHERE nao_id = '" + query_dict["nao_id"] +"'" +';'))[0]
-            print(module_id_dict)
-            module_dict = json.loads(MyServer.execute_select(" SELECT * FROM modules WHERE module_id = '" + module_id_dict['module_id'] +"'"+';'))[0]
+            module_id_dict= json.loads(MyServer.execute_select(" SELECT module_id FROM nao_module_assignment WHERE nao_id = '" + query_dict["nao_id"] +"'" +';'))
+            replyJson=json.dumps(module_id_dict)
+            print('SERVING User 200')
+            self.send_response(200)
+            self.send_header("Content-type", "JSON")
+            self.end_headers()
+            self.wfile.write(bytes(replyJson, "utf-8"))
+            print(self.client_address)
+        else:
+            print("send_error")
+            self.send_error(400)
+        
+
+    def serv_modulpackage(self):
+        print("module_Package_serv-----------------------------------------------------------------")
+        chopped_self = urlparse(self.path)
+        print(chopped_self)
+        if (chopped_self.query):
+            query_dict = dict(qc.split("=") for qc in chopped_self.query.split("&"))
+            module_dict = json.loads(MyServer.execute_select(" SELECT * FROM modules WHERE module_id = '" + query_dict['module_id'] +"'"+';'))[0]
             print(module_dict)
-            tasks_dict = json.loads(MyServer.execute_select(" SELECT * FROM tasks WHERE module_id = '" + module_id_dict['module_id'] +"'" +';'))
-            print (tasks_dict)
+            print("\n\nTasks:\n" )
+            tasks_dict = json.loads(MyServer.execute_select(" SELECT * FROM tasks WHERE module_id = '" + query_dict['module_id'] +"'" +';'))
+            print (type(tasks_dict))
+            #note task_dict, answer_dict and quastion_dict are actualy lists with dicts
+            for task in tasks_dict:
+                print(task)
+                question_dict = json.loads(MyServer.execute_select(" SELECT * FROM questions WHERE question_task_id = '" + task['task_id'] +"'" +';'))
+                for question in question_dict:
+                    print (question)
+                    answer_dict= json.loads(MyServer.execute_select(" SELECT * FROM answers WHERE answer_question_id = '" + question['question_task_id'] +"'" +';'))
+                    question.update({ "answers" : answer_dict })
+                task.update({"questions" : question_dict})
+            module_dict.update({"tasks" : tasks_dict})
+            print("\n\n     --------------- end JSON --------------- \n\n")
+            replyJson=json.dumps(module_dict)
+            print('SERVING User 200')
+            self.send_response(200)
+            self.send_header("Content-type", "JSON")
+            self.end_headers()
+            self.wfile.write(bytes(replyJson, "utf-8"))
+            print(self.client_address)
         else:
             print("send_error")
             self.send_error(400)
