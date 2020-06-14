@@ -132,6 +132,11 @@ function addModuleCard(moduleJSON){
     cardBodyBtnExport.classList = "btn btn-primary";
     cardBodyBtnExport.innerHTML = "Export";
     cardBody.appendChild(cardBodyBtnExport);
+    var cardBodyBtnExport2 = document.createElement("button");
+    cardBodyBtnExport2.onclick = "";
+    cardBodyBtnExport2.classList = "btn btn-primary";
+    cardBodyBtnExport2.innerHTML = "Einplanen";
+    cardBody.appendChild(cardBodyBtnExport2);
     card.appendChild(cardBody);
 
     var boxCard = document.createElement("div");
