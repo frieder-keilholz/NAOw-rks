@@ -159,6 +159,18 @@ function showDetails(moduleJSON){
     });
     document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
 }
+function loadTasks(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var userJSON = JSON.parse(this.responseText);
+            console.log(userJSON);
+            callback(userJSON[0]);
+        }
+    }
+    xhttp.open("GET","http://192.168.2.168:8080/tasks?module_id=,true");
+    xhttp.send();
+}
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
 function loadHTML(fileName, callback, param){
