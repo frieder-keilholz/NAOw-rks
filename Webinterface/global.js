@@ -113,6 +113,7 @@ function showDetails(moduleJSON){
         console.log(userJSON);
         document.getElementById("module_created_by").innerHTML = userJSON.user_name;
     });
+    document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
