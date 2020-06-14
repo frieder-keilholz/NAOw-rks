@@ -1,51 +1,10 @@
-// Globale Variablen
-var user;
-function setUser(userJSON){
-    user = userJSON;
-   
-}
-//loadUserJSON(1,setUser);
-
-// LogIn-Seite
-function tryLogin(){
-    let mail = document.getElementById("input_mail").value;
-    let pwd = document.getElementById("input_password").value;
-    checkUserCredentails(mail, pwd, login, loginFailed);
-}
-function login(){
-    loadUserJSON(1,setUser);
-    switch2homePage();
-}
-function loginFailed(){
-    alert("Nutzername oder Passwort falsch.");
-}
-function checkUserCredentails(mail, pwd, callback_success, callback_fail){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            var userJSON = JSON.parse(this.responseText)[0];
-            if(userJSON.user_password === pwd && userJSON.user_email === mail){
-                callback_success();
-            }else{
-                callback_fail();
-            }
-        }
-    }
-    xhttp.open("GET","http://192.168.2.168:8080/user?user_email="+mail+"",true);
-    xhttp.send();
-}
-function switch2homePage(){
-    loadHTML('index');
-}
-
 // Home-Seite
-function switch2modulePage(){
-    let userId = user.user_id;
+function switch2modulePage(userId){
     loadHTML('modules');
     loadModules(userId);
 }
 
-// Modul-Übersicht-Seite
+// Modul-Übersicht
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
@@ -76,13 +35,6 @@ function loadModule(moduleId){
     xhttp.send();
 }
 
-function switch2detailsPage(moduleJSON){
-    console.log(moduleJSON);
-    console.log("switch page to details page");
-    loadHTML('details', showDetails, moduleJSON);
-    //showDetails(moduleJSON); (in loadHTML)
-}
-
 function addModuleCard(moduleJSON){
     var card = document.createElement("div");
     card.classList = "card border-primary";
@@ -111,11 +63,10 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.appendChild(cardBodyDetailsSubject);
     cardBody.appendChild(cardBodyDetails);
     var cardBodyBtnDetails = document.createElement("button");
+    cardBodyBtnDetails.onclick = "showDetails("+moduleJSON.module_id+")";
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
-    //cardBodyBtnDetails.onclick = function(){alert("teststeset");};
     cardBody.appendChild(cardBodyBtnDetails);
-    cardBodyBtnDetails.onclick = function(){switch2detailsPage(moduleJSON)};
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
@@ -129,51 +80,17 @@ function addModuleCard(moduleJSON){
     document.getElementById("modules").appendChild(boxCard);
 }
 
-// Modul-Detail-Seite
-function showDetails(moduleJSON){
-    //console.log(moduleJSON);
-    //console.log("POINT1");
-    
-    document.getElementById("module_title").innerHTML = moduleJSON.module_name;
-    document.getElementById("module_description").innerHTML = moduleJSON.module_description;
-    document.getElementById("module_class_level").innerHTML = "Klassenstufe "+moduleJSON.module_class_lvl;
-    document.getElementById("module_id").innerHTML = moduleJSON.module_id;
-    document.getElementById("module_subject").innerHTML = moduleJSON.module_subject;
-    document.getElementById("module_created_at").innerHTML = moduleJSON.module_created_at;
-    //document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
-    loadUserJSON(moduleJSON.module_created_by,function(userJSON){
-        console.log(userJSON);
-        document.getElementById("module_created_by").innerHTML = userJSON.user_name;
-    });
-    document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
-}
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
-function loadHTML(fileName, callback, param){
+function loadHTML(fileName){
     var xhr= new XMLHttpRequest();
     xhr.open('GET', 'http://192.168.2.168/'+fileName+'.html', true);
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return; // or whatever error handling you want
         document.getElementById('html_doc').innerHTML= this.responseText;
-        //console.log("POINT0");
+        console.log("tset");
         //document.getElementById("home_title").innerText = "TEST :D";
-        if(callback){
-            callback(param);
-        }
     };
     xhr.send();
-}
-
-function loadUserJSON(userId, callback){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            var userJSON = JSON.parse(this.responseText);
-            console.log(userJSON);
-            callback(userJSON[0]);
-        }
-    }
-    xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
-    xhttp.send();
 }

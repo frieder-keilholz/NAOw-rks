@@ -10,13 +10,13 @@
     },
     "created_at":"02-02-2020",
     "tasks":[
-        {            
+        {
         "title":"Aufgabe 1",
         "description":"",
         "task_id":0,
         "module_name":"Hello NAO",
         "module_id":0,
-        "introduction":"Beantworte die folgenden Fragen, um dein Wissen um Roboter zu beweisen.",
+        "introduction":"Beantworte die folgenden Fragen, um dein Wissen über Roboter zu beweisen.",
         "questions":[
             {
                 "question":"Wer stellt die NAO Roboter her?",

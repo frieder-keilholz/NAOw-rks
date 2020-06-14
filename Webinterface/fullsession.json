@@ -1,6 +1,6 @@
 {
   "module_name":"Greetings, I'm NAO",
-  "module_id":1;
+  "module_id":5,
   "description":"NAO erzählt den Kindern, wie sie mit ihm umgehen müssen",
   "class-level":"1-6",
   "subject":"Einführung NAO",
@@ -9,13 +9,60 @@
       "user_name":"Martina Musterfrau"
   },
   "created_at":"02-02-2020",
-  "greeting": "Guten Morgen. Ich heiße NAO und freue mich schon darauf, euch zu unterrichten. Zusammen lernen wir heute, wie wir miteinander umgehen.",
+  "module_greeting": "Guten Morgen. Ich heiße NAO und freue mich schon darauf, euch zu unterrichten. Zusammen lernen wir heute, wie wir miteinander umgehen.",
   "tasks":[
-      {
-          "title":"Sprechen",
-          "description":"NAO erzählt den Schülern, dass sie ambesten miteinander lernen können, wenn sie leise und ruhig sind.",
-          "id":0,
-          ""
-      }
+    {
+      "title":"Sprechen",
+      "description":"NAO erzählt den Schülern, dass sie am besten miteinander lernen können, wenn sie leise und ruhig sind.",
+      "task_id":0,
+      "introduction":"Wenn ihr verstanden habt, was ich euch erklärt habe, dann zeigt mir die Karte mit dem A. Wenn ihr mich nicht verstanden habt, die Karte mit dem B.",
+      "questions":[
+        {
+          "question":"Ich habe leider schlechte Ohren, weshalb ich euch nicht gut verstehen kann. Deshalb zeigt ihr mir eure Antworten, indem ihr die Karte mit der passenden Antwortmöglichkeit vor mein Gesicht haltet. Habt ihr das verstanden?",
+          "answers":[
+              {
+                "id":0,
+                "symbol":"A",
+                "text":"Ja",
+                "answer_correct": 1
+              },
+              {
+                "id":1,
+                "symbol":"B",
+                "text":"Nein",
+                "answer_correct": 0,
+                "answer_explanation": "Ihr sprecht mit mir, indem ihr mir Karten vor das Gesicht haltet."
+              }
+          ]
+        }
+      ]
+    },
+    {
+      "title":"Arbeitsblätter",
+      "description":"NAO erzählt den Schülern, dass in Vertretungsstunden mit ihm Arbeitsblätter bearbeitet werden.",
+      "task_id":1,
+      "introduction":"Wenn ihr verstanden habt, was ich euch erklärt habe, dann zeigt mir die Karte mit dem A. Wenn ihr mich nicht verstanden habt, die Karte mit dem B.",
+      "questions":[
+        {
+          "question":"Wenn wir gemeinsam Vertretungsstunden haben, dann bringe ich immer Arbeitsblätter mit. Diese bearbeitet ihr dann in Gruppen. Wenn ihr fertig seid, kommt ihr zu mir nach vorn und wir vergleichen. Habt ihr das verstanden?",
+          "answers":[
+            {
+              "id":0,
+              "symbol":"A",
+              "text":"Ja",
+              "answer_correct": 1
+            },
+            {
+              "id":1,
+              "symbol":"B",
+              "text":"Nein",
+              "answer_correct": 0,
+              "answer_explanation": "Wir bearbeiten zusammen Arbeitsblätter zum Thema der Stunde. Wenn ihr ferig seid, vergleichen wir sie."
+            }
+          ]
+        }
+      ]
+    }
   ]
+  "module_goodbye":"Vielen Dank für eure Aufmerksamkeit und Mitarbeit, ich freue mich auf das nächste Mal!"
 }
