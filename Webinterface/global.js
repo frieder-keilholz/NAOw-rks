@@ -171,9 +171,9 @@ function showDetails(moduleJSON){
             tasksDivRowDivLabel.innerHTML = "Aufgabe:";
             tasksDivRowDiv.appendChild(tasksDivRowDivLabel);
             tasksDivRow.appendChild(tasksDivRowDiv);
-            let tasksDivRowDiv2 = document.createElement("div");
-            tasksDivRowDiv2.classList += " col-md-6";
-            tasksDivRow.appendChild(tasksDivRowDiv2);
+            let tasksDivRowDiv12 = document.createElement("div");
+            tasksDivRowDiv12.classList += " col-md-6";
+            tasksDivRow.appendChild(tasksDivRowDiv12);
 
             let tasksDivRow2 = document.createElement("div");
             tasksDivRow2.classList += " row";
@@ -184,9 +184,9 @@ function showDetails(moduleJSON){
             tasksDivRowDivLabel2.innerHTML = task.task_title;
             tasksDivRowDiv2.appendChild(tasksDivRowDivLabel2);
             tasksDivRow2.appendChild(tasksDivRowDiv2);
-            let tasksDivRowDiv2 = document.createElement("div");
-            tasksDivRowDiv2.classList += " col-md-6";
-            tasksDivRow2.appendChild(tasksDivRowDiv2);
+            let tasksDivRowDiv22 = document.createElement("div");
+            tasksDivRowDiv22.classList += " col-md-6";
+            tasksDivRow2.appendChild(tasksDivRowDiv22);
         })
     });
 }
