@@ -159,8 +159,34 @@ function showDetails(moduleJSON){
     });
     document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
     loadTasks(moduleJSON.module_id, function(tasksJSON){
+        let tasksDiv = document.getElementById("tasks");
         tasksJSON.forEach(function(task){
             console.log(task);
+            let tasksDivRow = document.createElement("div");
+            tasksDivRow.classList += " row";
+            tasksDiv.appendChild(tasksDivRow);
+            let tasksDivRowDiv = document.createElement("div");
+            tasksDivRowDiv.classList += " col-md-6";
+            let tasksDivRowDivLabel = document.createElement("label");
+            tasksDivRowDivLabel.innerHTML = "Aufgabe:";
+            tasksDivRowDiv.appendChild(tasksDivRowDivLabel);
+            tasksDivRow.appendChild(tasksDivRowDiv);
+            let tasksDivRowDiv2 = document.createElement("div");
+            tasksDivRowDiv2.classList += " col-md-6";
+            tasksDivRow.appendChild(tasksDivRowDiv2);
+
+            let tasksDivRow2 = document.createElement("div");
+            tasksDivRow2.classList += " row";
+            tasksDiv.appendChild(tasksDivRow2);
+            let tasksDivRowDiv2 = document.createElement("div");
+            tasksDivRowDiv2.classList += " col-md-6";
+            let tasksDivRowDivLabel2 = document.createElement("label");
+            tasksDivRowDivLabel2.innerHTML = task.task_title;
+            tasksDivRowDiv2.appendChild(tasksDivRowDivLabel2);
+            tasksDivRow2.appendChild(tasksDivRowDiv2);
+            let tasksDivRowDiv2 = document.createElement("div");
+            tasksDivRowDiv2.classList += " col-md-6";
+            tasksDivRow2.appendChild(tasksDivRowDiv2);
         })
     });
 }
