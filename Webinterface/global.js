@@ -190,5 +190,7 @@ function loadUserJSON(userId, callback){
 }
 
 function setNavbar(){
+    console.log("user:");
+    console.log(user);
     document.getElementById("navbar_name").innerHTML = user.user_firstname + " "+user.user_lastname;
 }
