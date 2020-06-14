@@ -92,8 +92,8 @@ function addModuleCard(moduleJSON){
 function showDetails(moduleJSON){
     console.log(moduleJSON);
     
-    document.getElementById("module_title").innerText = moduleJSON.module_name;
-    document.getElementById("module_description").innerText = moduleJSON.module_description;
+    document.getElementById("module_title").innerHTML = moduleJSON.module_name;
+    document.getElementById("module_description").innerHTML = moduleJSON.module_description;
 
 }
 
