@@ -36,6 +36,8 @@ function loadModule(moduleId){
 }
 
 function switch2detailsPage(moduleJSON){
+    console.log(moduleJSON);
+    console.log("switch page to details page");
     loadHTML('details');
     showDetails(moduleJSON);
 }
@@ -68,7 +70,7 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.appendChild(cardBodyDetailsSubject);
     cardBody.appendChild(cardBodyDetails);
     var cardBodyBtnDetails = document.createElement("button");
-    cardBodyBtnDetails.onclick = "switch2detailsPage("+moduleJSON+")";
+    cardBodyBtnDetails.onclick = "switch2detailsPage("+moduleJSON+");";
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
     cardBody.appendChild(cardBodyBtnDetails);
@@ -90,8 +92,8 @@ function showDetails(moduleJSON){
     console.log(moduleJSON);
     
     document.getElementById("module_title").innerText = moduleJSON.module_name;
-    document.getElementById("modue_description").innerText = moduleJSON.module_description;
-    
+    document.getElementById("module_description").innerText = moduleJSON.module_description;
+
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
