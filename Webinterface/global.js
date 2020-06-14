@@ -36,8 +36,10 @@ function loadModule(moduleId){
 }
 
 function switch2detailsPage(moduleJSON){
-    loadHTML('details');
-    showDetails(moduleJSON);
+    console.log(moduleJSON);
+    console.log("switch page to details page");
+    loadHTML('details', showDetails, moduleJSON);
+    //showDetails(moduleJSON); (in loadHTML)
 }
 
 function addModuleCard(moduleJSON){
@@ -68,10 +70,11 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.appendChild(cardBodyDetailsSubject);
     cardBody.appendChild(cardBodyDetails);
     var cardBodyBtnDetails = document.createElement("button");
-    cardBodyBtnDetails.onclick = "switch2detailsPage("+moduleJSON+")";
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
+    //cardBodyBtnDetails.onclick = function(){alert("teststeset");};
     cardBody.appendChild(cardBodyBtnDetails);
+    cardBodyBtnDetails.onclick = function(){switch2detailsPage(moduleJSON)};
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
@@ -87,23 +90,27 @@ function addModuleCard(moduleJSON){
 
 // Modul-Detail-Seite
 function showDetails(moduleJSON){
-    console.log(moduleJSON);
+    //console.log(moduleJSON);
+    //console.log("POINT1");
     
-    document.getElementById("module_title").innerText = moduleJSON.module_name;
-    document.getElementById("modue_description").innerText = moduleJSON.module_description;
-    
+    document.getElementById("module_title").innerHTML = moduleJSON.module_name;
+    document.getElementById("module_description").innerHTML = moduleJSON.module_description;
+
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
-function loadHTML(fileName){
+function loadHTML(fileName, callback, param){
     var xhr= new XMLHttpRequest();
     xhr.open('GET', 'http://192.168.2.168/'+fileName+'.html', true);
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return; // or whatever error handling you want
         document.getElementById('html_doc').innerHTML= this.responseText;
-        console.log("tset");
+        //console.log("POINT0");
         //document.getElementById("home_title").innerText = "TEST :D";
+        if(callback){
+            callback(param);
+        }
     };
     xhr.send();
 }
