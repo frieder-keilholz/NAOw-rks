@@ -43,18 +43,18 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
     xhttp.send();
 }
 function switch2homePage(){
-    loadHTML('index');
-    setNavbar();
+    loadHTML('index',setNavbar);
+    
 }
 
 // Home-Seite
 function switch2modulePage(){
     let userId = user.user_id;
-    loadHTML('modules');
+    loadHTML('modules',setNavbar);
     loadModules(userId);
     console.log("s2mods");
     console.log(user);
-    setNavbar();
+    
 }
 
 // Modul-Übersicht-Seite
