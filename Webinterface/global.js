@@ -104,10 +104,11 @@ function showDetails(moduleJSON){
     document.getElementById("module_description").innerHTML = moduleJSON.module_description;
     document.getElementById("module_class_level").innerHTML = moduleJSON.module_class_lvl;
     document.getElementById("module_id").innerHTML = moduleJSON.module_id;
-    document.getElementById("module_subject").innerHTML = module_subject;
+    document.getElementById("module_subject").innerHTML = moduleJSON.module_subject;
     document.getElementById("module_created_at").innerHTML = moduleJSON.module_created_at;
     //document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
     loadUserJSON(moduleJSON.module_created_by,function(userJSON){
+        console.log(userJSON);
         document.getElementById("module_created_by").innerHTML = userJSON.user_name;
     });
 }
