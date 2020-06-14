@@ -74,7 +74,7 @@ function addModuleCard(moduleJSON){
     cardBodyBtnDetails.innerHTML = "Details";
     //cardBodyBtnDetails.onclick = function(){alert("teststeset");};
     cardBody.appendChild(cardBodyBtnDetails);
-    cardBodyBtnDetails.onclick = function(){alert("teststeset");};
+    cardBodyBtnDetails.onclick = function(){switch2detailsPage(moduleJSON)};
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
