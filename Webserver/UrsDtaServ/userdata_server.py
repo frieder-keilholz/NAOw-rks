@@ -9,6 +9,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import mysql.connector as mariaDB
 from urllib.parse import urlparse
+from urllib.parse import unquote
 from pathlib import Path
 import itertools
 import json
@@ -24,7 +25,7 @@ class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         
         chopped_self = urlparse(self.path)
-        print(chopped_self)
+        
         
         if chopped_self.path == '/':
             MyServer.serv_test(self)
@@ -59,12 +60,12 @@ class MyServer(BaseHTTPRequestHandler):
     #serves modules
     def serv_module(self):
         print("modul_serv-----------------------------------------------------------------")
+
         chopped_self = urlparse(self.path)
         print(chopped_self)
         try:
             if (chopped_self.query):
-                query_self = chopped_self.query
-                query_self=query_self
+                query_self = unquote(chopped_self.query)
                 print("Querry______Funoo")
                 print(query_self)
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
@@ -91,7 +92,7 @@ class MyServer(BaseHTTPRequestHandler):
         print(chopped_self)
         try:
             if (chopped_self.query):
-                query_self = chopped_self.query
+                query_self = unquote(chopped_self.query)
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
@@ -117,7 +118,7 @@ class MyServer(BaseHTTPRequestHandler):
         print(chopped_self)
         try:
             if (chopped_self.query):
-                query_self = chopped_self.query
+                query_self = unquote(chopped_self.query)
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
@@ -142,7 +143,7 @@ class MyServer(BaseHTTPRequestHandler):
         print(chopped_self)
         try:
             if (chopped_self.query):
-                query_self = chopped_self.query
+                query_self = unquote(chopped_self.query)
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
@@ -167,7 +168,7 @@ class MyServer(BaseHTTPRequestHandler):
         print(chopped_self)
         try:
             if (chopped_self.query):
-                query_self = chopped_self.query
+                query_self = unquote(chopped_self.query)
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
