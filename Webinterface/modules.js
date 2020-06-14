@@ -19,7 +19,8 @@ function loadModule(moduleId){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            var moduleJSON = this.responseText;
+            var moduleJSON = JSON.parse(this.responseText)[0];
+            console.log(moduleJSON)
             addModuleCard(moduleJSON);
         }
     }
@@ -47,7 +48,7 @@ function addModuleCard(moduleJSON){
     cardBodyDetails.classList = "list-group list-group-flush";
     var cardBodyDetailsClassLVL = document.createElement("li");
     cardBodyDetailsClassLVL.classList = "list-group-item";
-    cardBodyDetailsClassLVL.innerHTML = moduleJSON.class_lvl;
+    cardBodyDetailsClassLVL.innerHTML = "Klassenstufe "+moduleJSON.module_class_lvl;
     var cardBodyDetailsSubject = document.createElement("li");
     cardBodyDetailsSubject.classList = "list-group-item";
     cardBodyDetailsSubject.innerHTML = moduleJSON.module_subject;
@@ -70,4 +71,17 @@ function addModuleCard(moduleJSON){
     boxCard.classList = "col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-2";
     boxCard.appendChild(card);
     document.getElementById("modules").appendChild(boxCard);
+}
+
+function loadHTML(){
+    var xhr= new XMLHttpRequest();
+    xhr.open('GET', 'http://192.168.2.168/index.html', true);
+    xhr.onreadystatechange= function() {
+        if (this.readyState!==4) return;
+        if (this.status!==200) return; // or whatever error handling you want
+        document.getElementById('html_doc').innerHTML= this.responseText;
+        console.log("tset");
+        document.getElementById("home_title").innerText = "TEST :D";
+    };
+    xhr.send();
 }
