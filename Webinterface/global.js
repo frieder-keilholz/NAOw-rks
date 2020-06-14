@@ -38,8 +38,8 @@ function loadModule(moduleId){
 function switch2detailsPage(moduleJSON){
     console.log(moduleJSON);
     console.log("switch page to details page");
-    loadHTML('details');
-    showDetails(moduleJSON);
+    loadHTML('details', showDetails, moduleJSON);
+    //showDetails(moduleJSON); (in loadHTML)
 }
 
 function addModuleCard(moduleJSON){
@@ -98,7 +98,7 @@ function showDetails(moduleJSON){
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
-function loadHTML(fileName){
+function loadHTML(fileName, callback, param){
     var xhr= new XMLHttpRequest();
     xhr.open('GET', 'http://192.168.2.168/'+fileName+'.html', true);
     xhr.onreadystatechange= function() {
@@ -107,6 +107,9 @@ function loadHTML(fileName){
         document.getElementById('html_doc').innerHTML= this.responseText;
         console.log("tset");
         //document.getElementById("home_title").innerText = "TEST :D";
+        if(callback){
+            callback(param);
+        }
     };
     xhr.send();
 }
