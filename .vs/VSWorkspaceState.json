@@ -4,6 +4,7 @@
     "\\Dokumentation",
     "\\Webinterface",
     "\\Webserver",
+    "\\Webserver\\NaoDtaServ",
     "\\Webserver\\UrsDtaServ"
   ],
   "SelectedNode": "\\Webserver\\UrsDtaServ\\userdata_server.py",

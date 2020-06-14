@@ -36,9 +36,12 @@ class MyServer(BaseHTTPRequestHandler):
         if (chopped_self.query):
             print("yeet")
             query_dict = dict(qc.split("=") for qc in chopped_self.query.split("&"))
-            module_id_dict= MyServer.execute_select(" SELECT module_id FROM nao_module_assignment WHERE nao_id = '" + query_dict["nao_id"] +"'")
+            module_id_dict= json.loads(MyServer.execute_select(" SELECT module_id FROM nao_module_assignment WHERE nao_id = '" + query_dict["nao_id"] +"'" +';'))[0]
             print(module_id_dict)
-            
+            module_dict = json.loads(MyServer.execute_select(" SELECT * FROM modules WHERE module_id = '" + module_id_dict['module_id'] +"'"+';'))[0]
+            print(module_dict)
+            tasks_dict = json.loads(MyServer.execute_select(" SELECT * FROM tasks WHERE module_id = '" + module_id_dict['module_id'] +"'" +';'))
+            print (tasks_dict)
         else:
             print("send_error")
             self.send_error(400)
@@ -52,36 +55,27 @@ class MyServer(BaseHTTPRequestHandler):
 
         con = mariaDB.connect(host='192.168.2.168', user = 'development',password='dev',database='naoworks')
 
-
-
         # Exicute SQL command
         cursor = con.cursor()
         SQLBefehl = selcetString
         test = cursor.execute(SQLBefehl)
 
-        print(cursor.description)
         desc=cursor.description
-        print(type(desc[0]))
-        print("=-=-=-=-=")
-
+        
         listOfDicts = []
         # Durchlaufen der Ergebnisse
         row=cursor.fetchone()
 
         while (row!=None):
-            print(row)
             i = len(row)
             i-=1
             tempdict={}
             while i >= 0:
                 if(row[i]):
-                    print(row[i])
                     tempdict.update({desc[i][0] : row[i].__str__()})
                 i-=1
             listOfDicts.append(tempdict)
             row = cursor.fetchone()
-        print(listOfDicts)
-        # Ende der Verarbeitung
         cursor.close()
         # Abmelden
         con.disconnect()
