@@ -1,0 +1,1 @@
+addModuleCard({'module_img_name':'naos.jpg', 'module_name':'test', 'module_description':'...', 'class_lvl': '2', 'module_subject': 'Deutsch', 'module_id': '123'});
