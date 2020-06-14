@@ -1,4 +1,4 @@
-
+// Modul-Übersicht
 function loadModules(userId){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
@@ -74,9 +74,11 @@ function addModuleCard(moduleJSON){
     document.getElementById("modules").appendChild(boxCard);
 }
 
-function loadHTML(){
+
+// Hilfsfunktion - lädt neue HTML in aktuelles Dokument
+function loadHTML(fileName){
     var xhr= new XMLHttpRequest();
-    xhr.open('GET', 'http://192.168.2.168/index.html', true);
+    xhr.open('GET', 'http://192.168.2.168/'+fileName+'.html', true);
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return; // or whatever error handling you want
