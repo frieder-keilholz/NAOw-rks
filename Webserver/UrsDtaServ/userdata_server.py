@@ -46,22 +46,19 @@ class MyServer(BaseHTTPRequestHandler):
 
 
     def serv_test(self):
-        print("modul_serv-----------------------------------------------------------------")
+        print("user_module_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
         print(chopped_self)
+
         if (chopped_self.query):
             query_self = chopped_self.query
-            query_self=query_self
-            print("Querry______Funoo")
-            print(query_self)
             query_dict = dict(qc.split("=") for qc in query_self.split("&"))
             print( query_dict)
+            select_string = "SELECT * FROM user_module WHERE "
             #building the select statemanet
-            select_string = "SELECT * FROM modules WHERE "
-                
             replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
         else:
-            replyJSON = MyServer.execute_select('SELECT * FROM modules;')
+            replyJSON = MyServer.execute_select('SELECT * FROM user_module;')
             print("hi")
         print('SERVING module 200')
         self.send_response(200)
@@ -69,6 +66,8 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(replyJSON, "utf-8"))
         print(self.client_address)
+        print("send_error")
+        self.send_error(404)
 
     def serv_module(self):
         print("modul_serv-----------------------------------------------------------------")
@@ -184,6 +183,7 @@ class MyServer(BaseHTTPRequestHandler):
                 query_dict = dict(qc.split("=") for qc in query_self.split("&"))
                 print( query_dict)
                 #building the select statemanet
+                select_string = "SELECT * FROM user_module WHERE "
                 replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
             else:
                 replyJSON = MyServer.execute_select('SELECT * FROM user_module;')
