@@ -21,3 +21,8 @@
 .home_menu_card:hover{
     text-decoration: underline;
 }
+
+.side-margin{
+    margin-left: 3%;
+    margin-right: 3%;
+}
