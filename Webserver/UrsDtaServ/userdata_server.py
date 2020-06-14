@@ -1,4 +1,5 @@
-# Python 3 server example
+# Python 3 server for databank access
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import mysql.connector as mariaDB
@@ -35,9 +36,6 @@ class MyServer(BaseHTTPRequestHandler):
             MyServer.serv_user_module(self)
         else:
             print(chopped_self.path)
-            #self.send_response(404)
-            #self.end_headers()
-            #self.wfile.write(bytes("404", "utf-8"))
             self.send_error(404)
             print('dummy')
 
@@ -46,28 +44,12 @@ class MyServer(BaseHTTPRequestHandler):
 
 
     def serv_test(self):
-        print("user_module_serv-----------------------------------------------------------------")
-        chopped_self = urlparse(self.path)
-        print(chopped_self)
-
-        if (chopped_self.query):
-            query_self = chopped_self.query
-            query_dict = dict(qc.split("=") for qc in query_self.split("&"))
-            print( query_dict)
-            select_string = "SELECT * FROM user_module WHERE "
-            #building the select statemanet
-            replyJSON = MyServer.execute_select(select_string + MyServer.build_select_string(query_dict))
-        else:
-            replyJSON = MyServer.execute_select('SELECT * FROM user_module;')
-            print("hi")
         print('SERVING module 200')
         self.send_response(200)
-        self.send_header("Content-type", "JSON")
+        self.send_header("Content-type", "text/plain")
         self.end_headers()
-        self.wfile.write(bytes(replyJSON, "utf-8"))
+        self.wfile.write(bytes("This is a Test", "utf-8"))
         print(self.client_address)
-        print("send_error")
-        self.send_error(404)
 
     def serv_module(self):
         print("modul_serv-----------------------------------------------------------------")
