@@ -2,7 +2,7 @@
 var user;
 function setUser(userJSON){
     user = userJSON;
-    setNavbar();
+    //setNavbar();
 }
 //loadUserJSON(1,setUser);
 
