@@ -4,7 +4,39 @@ function setUser(userJSON){
     user = userJSON;
    
 }
-loadUserJSON(3,setUser);
+//loadUserJSON(1,setUser);
+
+// LogIn-Seite
+function tryLogin(){
+    let mail = document.getElementById("input_mail").value;
+    let pwd = document.getElementById("input_password").value;
+    checkUserCredentails(mail, pwd, login, loginFailed);
+}
+function login(){
+    loadUserJSON(1,setUser);
+    switch2homePage();
+}
+function loginFailed(){
+    alert("Nutzername oder Passwort falsch.");
+}
+function checkUserCredentails(mail, pwd, callback_success, callback_fail){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var userJSON = JSON.parse(this.responseText)[0];
+            if(userJSON.user_password === pwd && userJSON.user_email === mail){
+                callback_success();
+            }else{
+                callback_fail();
+            }
+        }
+    }
+    xhttp.open("GET","http://192.168.2.168:8080/user?user_email="+mail+"",true);
+    xhttp.send();
+}
+function switch2homePage(){
+    loadHTML('index');
+}
 
 // Home-Seite
 function switch2modulePage(){
