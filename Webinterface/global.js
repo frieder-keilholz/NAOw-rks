@@ -2,12 +2,14 @@
 var user;
 function setUser(userJSON){
     user = userJSON;
+   
 }
 loadUserJSON(1,setUser);
 
 // Home-Seite
 function switch2modulePage(){
-    userId = user.user_id;
+    console.log(user);
+    let userId = user.user_id;
     loadHTML('modules');
     loadModules(userId);
 }
