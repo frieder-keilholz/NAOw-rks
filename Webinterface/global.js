@@ -95,7 +95,11 @@ function showDetails(moduleJSON){
     
     document.getElementById("module_title").innerHTML = moduleJSON.module_name;
     document.getElementById("module_description").innerHTML = moduleJSON.module_description;
-
+    document.getElementById("module_class_level").innerHTML = moduleJSON.module_class_lvl;
+    document.getElementById("module_id").innerHTML = moduleJSON.module_id;
+    document.getElementById("module_subject").innerHTML = module_subject;
+    document.getElementById("module_created_at").innerHTML = moduleJSON.module_created_at;
+    document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
