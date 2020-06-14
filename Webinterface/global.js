@@ -159,6 +159,7 @@ function showDetails(moduleJSON){
     });
     document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
     loadTasks(moduleJSON.module_id, function(tasksJSON){
+        document.getElementById("module_numOfTasks").innerHTML = tasksJSON.length;
         let tasksDiv = document.getElementById("tasks");
         let i = 1;
         tasksJSON.forEach(function(task){
