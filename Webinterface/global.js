@@ -109,7 +109,7 @@ function showDetails(moduleJSON){
     //document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
     loadUserJSON(moduleJSON.module_created_by,function(userJSON){
         console.log(userJSON);
-        document.getElementById("module_created_by").innerHTML = userJSON.user_name;
+        document.getElementById("module_created_by").innerHTML = userJSON[0].user_name;
     });
 }
 
