@@ -9,8 +9,8 @@
       "user_name":"Martina Musterfrau"
   },
   "created_at":"02-02-2020",
-  "module_greeting": "Guten Morgen. Ich hei&szlige NAO und freue mich schon darauf, euch zu unterrichten. Zusammen lernen wir heute, wie wir miteinander umgehen.",
-  "module_goodbye":"Vielen Dank für eure Aufmerksamkeit und Mitarbeit, ich freue mich auf das n&aulmchste Mal!",
+  "module_greeting": "Guten Morgen. Ich heiße NAO und freue mich schon darauf, euch zu unterrichten. Zusammen lernen wir heute, wie wir miteinander umgehen.",
+  "module_goodbye":"Vielen Dank für eure Aufmerksamkeit und Mitarbeit, ich freue mich auf das nächste Mal!",
   "tasks":[
     {
       "title":"Sprechen",
