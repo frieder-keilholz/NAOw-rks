@@ -72,7 +72,7 @@ function addModuleCard(moduleJSON){
     var cardBodyBtnDetails = document.createElement("button");
     cardBodyBtnDetails.classList = "btn btn-primary mr-1";
     cardBodyBtnDetails.innerHTML = "Details";
-    cardBodyBtnDetails.onclick = "switch2detailsPage(moduleJSON);";
+    cardBodyBtnDetails.onclick = "switch2detailsPage(1);";
     cardBody.appendChild(cardBodyBtnDetails);
     var cardBodyBtnExport = document.createElement("button");
     cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
