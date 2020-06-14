@@ -11,8 +11,8 @@ function tryLogin(){
     let pwd = document.getElementById("inputPassword").value;
     checkUserCredentails(mail, pwd, login, loginFailed);
 }
-function login(){
-    loadUserJSON(1,setUser);
+function login(userId){
+    loadUserJSON(userId,setUser);
     switch2homePage();
 }
 function loginFailed(){
@@ -27,7 +27,7 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
                 callback_fail();
             }
             if(userJSON.user_password === pwd && userJSON.user_email === mail){
-                callback_success();
+                callback_success(userJSON.user_id);
             }else{
                 callback_fail();
             }
