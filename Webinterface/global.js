@@ -44,7 +44,6 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
 }
 function switch2homePage(){
     loadHTML('index',setNavbar);
-    
 }
 
 // Home-Seite
