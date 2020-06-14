@@ -84,7 +84,7 @@ function loadHTML(fileName){
         if (this.status!==200) return; // or whatever error handling you want
         document.getElementById('html_doc').innerHTML= this.responseText;
         console.log("tset");
-        document.getElementById("home_title").innerText = "TEST :D";
+        //document.getElementById("home_title").innerText = "TEST :D";
     };
     xhr.send();
 }
