@@ -198,9 +198,9 @@ function loadUserJSON(userId, callback){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            var userJSON = JSON.parse(this.responseText);
+            var userJSON = JSON.parse(this.responseText)[0];
             console.log(userJSON);
-            callback(userJSON[0]);
+            callback(userJSON);
         }
     }
     xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
