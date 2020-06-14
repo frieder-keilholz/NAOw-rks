@@ -106,8 +106,10 @@ function showDetails(moduleJSON){
     document.getElementById("module_id").innerHTML = moduleJSON.module_id;
     document.getElementById("module_subject").innerHTML = module_subject;
     document.getElementById("module_created_at").innerHTML = moduleJSON.module_created_at;
-    document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
-    loadUserJSON(moduleJSON.module_created_by);
+    //document.getElementById("module_created_by").innerHTML = moduleJSON.module_created_by;
+    loadUserJSON(moduleJSON.module_created_by,function(userJSON){
+        document.getElementById("module_created_by").innerHTML = userJSON.user_name;
+    });
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
@@ -133,7 +135,7 @@ function loadUserJSON(userId, callback){
         if(this.readyState == 4 && this.status == 200){
             var userJSON = JSON.parse(this.responseText);
             console.log(userJSON);
-            user = userJSON;
+            callback(userJSON);
         }
     }
     xhttp.open("GET","http://192.168.2.168:8080/user?user_id="+userId+"",true);
