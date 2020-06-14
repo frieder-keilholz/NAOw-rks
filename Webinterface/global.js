@@ -90,6 +90,7 @@ function switch2detailsPage(moduleJSON){
     console.log(moduleJSON);
     console.log("switch page to details page");
     loadHTML('details', showDetails, moduleJSON);
+    setNavbar();
     //showDetails(moduleJSON); (in loadHTML)
 }
 
@@ -189,5 +190,7 @@ function loadUserJSON(userId, callback){
 }
 
 function setNavbar(){
+    console.log("user:");
+    console.log(user);
     document.getElementById("navbar_name").innerHTML = user.user_firstname + " "+user.user_lastname;
 }
