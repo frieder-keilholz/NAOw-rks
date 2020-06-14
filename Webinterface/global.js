@@ -43,8 +43,11 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
     xhttp.send();
 }
 function switch2homePage(){
-    loadHTML('index',setNavbar);
+    console.log("1");
     
+    while(!user){}
+    console.log("2");
+    loadHTML('index',setNavbar);
 }
 
 // Home-Seite
