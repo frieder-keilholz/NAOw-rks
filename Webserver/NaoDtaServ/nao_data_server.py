@@ -1,4 +1,8 @@
-# Python 3 server for the nao
+"""
+This webserver Builds the Json for one lesson with the nao and also delivers what modules have to be loaded
+
+@autor Maximilian Hartmann
+"""
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import mysql.connector as mariaDB
