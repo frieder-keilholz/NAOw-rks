@@ -160,6 +160,7 @@ function showDetails(moduleJSON){
     document.getElementById("module_img").src = "images/"+moduleJSON.module_img_name;
     loadTasks(moduleJSON.module_id, function(tasksJSON){
         let tasksDiv = document.getElementById("tasks");
+        let i = 1;
         tasksJSON.forEach(function(task){
             console.log(task);
             let tasksDivRow = document.createElement("div");
@@ -168,14 +169,12 @@ function showDetails(moduleJSON){
             let tasksDivRowDiv = document.createElement("div");
             tasksDivRowDiv.classList += " col-md-6";
             let tasksDivRowDivLabel = document.createElement("label");
-            tasksDivRowDivLabel.innerHTML = "Aufgabe:";
+            tasksDivRowDivLabel.innerHTML = "Aufgabe "+ i++ +":";
             tasksDivRowDiv.appendChild(tasksDivRowDivLabel);
             tasksDivRow.appendChild(tasksDivRowDiv);
             let tasksDivRowDiv12 = document.createElement("div");
             tasksDivRowDiv12.classList += " col-md-6";
-            let showLink = document.createElement("a");
-            showLink.innerHTML = "Anzeigen";
-            tasksDivRowDiv12.appendChild(showLink);
+            
             tasksDivRow.appendChild(tasksDivRowDiv12);
 
             let tasksDivRow2 = document.createElement("div");
@@ -189,6 +188,9 @@ function showDetails(moduleJSON){
             tasksDivRow2.appendChild(tasksDivRowDiv2);
             let tasksDivRowDiv22 = document.createElement("div");
             tasksDivRowDiv22.classList += " col-md-6";
+            let showLink = document.createElement("a");
+            showLink.innerHTML = "Anzeigen";
+            tasksDivRowDiv22.appendChild(showLink);
             tasksDivRow2.appendChild(tasksDivRowDiv22);
         })
     });
