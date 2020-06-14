@@ -31,7 +31,12 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
             }
         }
     }
-    xhttp.open("GET","http://192.168.2.168:8080/user?user_email="+mail+"",true);
+    const params = new URLSearchParams({
+        user_email: mail,
+      });
+    console.log(params.toString());
+    //xhttp.open("GET","http://192.168.2.168:8080/user?user_email="+mail+"",true);
+    xhttp.open("GET","http://192.168.2.168:8080/user?"+params.toString(),true);
     xhttp.send();
 }
 function switch2homePage(){
