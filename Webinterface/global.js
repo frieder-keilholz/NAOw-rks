@@ -52,6 +52,8 @@ function switch2modulePage(){
     let userId = user.user_id;
     loadHTML('modules');
     loadModules(userId);
+    console.log("s2mods");
+    console.log(user);
     setNavbar();
 }
 
