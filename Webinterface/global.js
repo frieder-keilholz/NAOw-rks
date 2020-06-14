@@ -76,7 +76,7 @@ function addModuleCard(moduleJSON){
     cardBodyBtnDetails.onclick = switch2detailsPage(moduleJSON);
     cardBody.appendChild(cardBodyBtnDetails);
     var cardBodyBtnExport = document.createElement("button");
-    cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
+    //cardBodyBtnExport.onclick = "showExport("+moduleJSON.module_id+")";
     cardBodyBtnExport.classList = "btn btn-primary";
     cardBodyBtnExport.innerHTML = "Export";
     cardBody.appendChild(cardBodyBtnExport);
