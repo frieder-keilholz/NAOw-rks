@@ -169,7 +169,8 @@ function showDetails(moduleJSON){
             let tasksDivRowDiv = document.createElement("div");
             tasksDivRowDiv.classList += " col-md-6";
             let tasksDivRowDivLabel = document.createElement("label");
-            tasksDivRowDivLabel.innerHTML = "Aufgabe "+ i++ +":";
+            tasksDivRowDivLabel.innerHTML = "Aufgabe "+ i +":";
+            i+=1;
             tasksDivRowDiv.appendChild(tasksDivRowDivLabel);
             tasksDivRow.appendChild(tasksDivRowDiv);
             let tasksDivRowDiv12 = document.createElement("div");
