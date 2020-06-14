@@ -90,7 +90,7 @@ function addModuleCard(moduleJSON){
 
 // Modul-Detail-Seite
 function showDetails(moduleJSON){
-    console.log(moduleJSON);
+    //console.log(moduleJSON);
     console.log("POINT1");
     
     document.getElementById("module_title").innerHTML = moduleJSON.module_name;
