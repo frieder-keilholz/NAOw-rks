@@ -84,7 +84,7 @@ function loadModule(moduleId){
             addModuleCard(moduleJSON);
         }
     }
-    xhttp.open("GET",url+"/modules?module_id="+moduleId+"",true);
+    xhttp.open("GET",urlAPI+"/modules?module_id="+moduleId+"",true);
     xhttp.send();
 }
 
