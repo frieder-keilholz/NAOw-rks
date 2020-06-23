@@ -1,5 +1,6 @@
 // Globale Variablen
-var url = "http://www.comoffice.org:41030";
+var urlAPI = "http://www.comoffice.org:41030";
+var urlWebserver = "http://www.comoffice.org:31039";
 var user;
 function setUser(userJSON){
     user = userJSON;
@@ -39,7 +40,7 @@ function checkUserCredentails(mail, pwd, callback_success, callback_fail){
       });
     console.log(params.toString());
     //xhttp.open("GET","http://192.168.2.168:8080/user?user_email="+mail+"",true);
-    xhttp.open("GET",url+"/user?"+params.toString(),true);
+    xhttp.open("GET",urlAPI+"/user?"+params.toString(),true);
     xhttp.send();
 }
 function switch2homePage(){
@@ -70,7 +71,7 @@ function loadModules(userId){
             });
         }
     }
-    xhttp.open("GET",url+"/user_module?user_id="+userId+"",true);
+    xhttp.open("GET",urlAPI+"/user_module?user_id="+userId+"",true);
     xhttp.send();
 }
 
@@ -212,14 +213,14 @@ function loadTasks(moduleId, callback){
             callback(tasksJSON);
         }
     }
-    xhttp.open("GET",url+"/tasks?module_id="+moduleId,true);
+    xhttp.open("GET",urlAPI+"/tasks?module_id="+moduleId,true);
     xhttp.send();
 }
 
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
 function loadHTML(fileName, callback, param){
     var xhr= new XMLHttpRequest();
-    xhr.open('GET', url+fileName+'.html', true);
+    xhr.open('GET', urlWebserver+fileName+'.html', true);
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return; // or whatever error handling you want
@@ -242,7 +243,7 @@ function loadUserJSON(userId, callback){
             callback(userJSON);
         }
     }
-    xhttp.open("GET",url+"/user?user_id="+userId+"",true);
+    xhttp.open("GET",urlAPI+"/user?user_id="+userId+"",true);
     xhttp.send();
 }
 
