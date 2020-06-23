@@ -1,5 +1,5 @@
 // Globale Variablen
-var url = "http://www.comoffice.org:31039";
+var url = "http://www.comoffice.org:41030";
 var user;
 function setUser(userJSON){
     user = userJSON;
