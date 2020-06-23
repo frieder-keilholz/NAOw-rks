@@ -220,7 +220,7 @@ function loadTasks(moduleId, callback){
 // Hilfsfunktion - lädt neue HTML in aktuelles Dokument
 function loadHTML(fileName, callback, param){
     var xhr= new XMLHttpRequest();
-    xhr.open('GET', urlWebserver+fileName+'.html', true);
+    xhr.open('GET', urlWebserver+"/"+fileName+'.html', true);
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return; // or whatever error handling you want
