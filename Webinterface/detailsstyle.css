@@ -1,5 +1,6 @@
 body {
-    background: -webkit-linear-gradient(left, #3931af, #ffffff);
+    /**background: -webkit-linear-gradient(left, #3931af, #ffffff);**/
+    background: -webkit-linear-gradient(left, #0069b1, #ffffff);
 }
 
 .emp-profile {
@@ -111,4 +112,13 @@ body {
 .profile-tab p {
     font-weight: 600;
     color: #0062cc;
+}
+
+.side_margin{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.moduleImg{
+    background-size: cover;
 }

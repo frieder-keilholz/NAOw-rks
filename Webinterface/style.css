@@ -17,3 +17,8 @@
     padding: 15px;
     margin: 0 auto;
 }
+
+.home_menu_card:hover{
+    text-decoration: underline;
+}
+

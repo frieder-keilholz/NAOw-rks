@@ -1,0 +1,19 @@
+{
+    "module_name":"Hello NAO",
+    "module_id":0,
+    "description":" NAO stellt sich vor ",
+    "class":"1-6",
+    "subject":"Einführung NAO",
+    "created_by":{
+        "user_id":0,
+        "user_name":"Martina Musterfrau"
+    },
+    "created_at":"02-02-2020",
+    "tasks":[
+        {
+            "title":"Aufgabe 1",
+            "description":"",
+            "id":0
+        }
+    ]
+}

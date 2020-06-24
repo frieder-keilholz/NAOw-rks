@@ -1,0 +1,254 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="detailsstyle.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <title>NAOw&oumlrks Webinterface</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">NAOw&oumlrks Webinterface</a>
+        <div class="form-inline my-2 my-lg-0">
+            <span class="navbar-brand h2 ml-3 mb-0">Martina Musterfrau</span>
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="window.location='login.html'">Abmelden</button>
+        </div>
+    </nav>
+    <div class="container emp-profile">
+        <!--form method="post"-->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profile-img">
+                        <!--img src="http://www.comoffice.org:31039/images/nao.jpeg" alt="" /-->
+                        <img src="images/naos.jpeg" alt="">
+                        
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="profile-head">
+                        <h5>
+                            Modul Titel
+                        </h5>
+                        <h6>
+                            Modul Beschreibung
+                        </h6>
+                        <p class="proile-rating">Klassenstufe: <span id="class-level">n.a.</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <!--a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">&Uumlbersicht</a-->
+                                <a class="nav-link active" id="home-tab" onclick="document.getElementById('home').className += ' active show'; document.getElementById('tasks').classList.remove('active');this.classList.add('active');document.getElementById('tasks-tab').classList.remove('active');">Übersicht</a>
+                            </li>
+                            <li class="nav-item">
+                                <!--a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Aufgaben</a-->
+                                <a class="nav-link" id="tasks-tab" onclick="document.getElementById('tasks').className += ' active show'; document.getElementById('home').classList.remove('active'); this.classList.add('active');document.getElementById('home-tab').classList.remove('active');">Aufgaben</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <!--input type="submit" class="profile-edit-btn" name="btnAddMore" value="Bearbeiten" /-->
+                    <button class="profile-edit-btn">Bearbeiten</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profile-work">
+                        
+                        <p></p>
+                        <a href=""></a><br />
+                        <a href=""></a><br />
+                        <a href=""></a>
+                        <p></p>
+                        <a href=""></a><br />
+                        <a href=""></a><br />
+                        <a href=""></a><br />
+                        <a href=""></a><br />
+                        <a href=""></a><br />
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Modul Id</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>welcome123</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Themenbezug:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Einf&uumlhrung</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Anzahl von Aufgaben</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>0</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Erstellt von: </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Martina Musterfrau</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Erstellt am:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>24.03.2019</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fragestellung:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="task.html">Anzeigen</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>-</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>-</p>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--/form-->
+    </div>
+</body>
+</html>
