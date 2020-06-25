@@ -38,10 +38,12 @@ def right_answer(right_answer):
     motion.wakeUp()
     motion.setStiffnesses("Body", 1.0)
     anims.say("^start(animations/Sit/Emotions/Positive/Happy_2)" + right_answer, configuration)
+    time.sleep(2)
     motion.rest()
 
 def wrong_answer(wrong_answer):
     motion.wakeUp()
     motion.setStiffnesses("Body", 1.0)
     anims.say("^start(animations/Sit/Emotions/Negative/Frustrated_1)" + wrong_answer, configuration)
+    time.sleep(2)
     motion.rest()
