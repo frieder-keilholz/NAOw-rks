@@ -38,7 +38,7 @@ class MyServer(BaseHTTPRequestHandler):
     #replys with the muduls assigned for the nao
     def serv_assinged_modules(self):
 
-        print("Assingned_modules_serv-----------------------------------------------------------------")
+        print("Assigned_modules_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
         print(chopped_self)
         try:
@@ -59,7 +59,8 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             print("send_error")
             self.send_error(404)
-    #builds the giant Jason for the nao
+
+    #builds the giant JSON for the nao
     def serv_modulpackage(self):
         print("module_Package_serv-----------------------------------------------------------------")
         chopped_self = urlparse(self.path)
