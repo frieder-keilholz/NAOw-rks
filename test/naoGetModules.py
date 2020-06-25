@@ -20,29 +20,32 @@ from naoqi import ALBroker
 IP = "192.168.2.162"
 PORT = 9559
 
-
 memoryProxy = ALProxy("ALMemory", IP, PORT)
+tts = ALProxy("ALTextToSpeech", IP, PORT)
 
 
+def get_todays_modules():
+    bodyID = memoryProxy.getData("Device/DeviceList/ChestBoard/BodyId")
+    URL = "http://comoffice.org:41031/assigned_modules?nao_id=" + bodyID
+    re = requests.get(URL)
+    raw_data = re.text
+    #print "Raw data: " + raw_data
+    modules = json.loads(raw_data)
+    module_ID = modules[0]["module_id"]
 
+    #for module in modules[0]["module_id"]:
+    #    print module
 
-class naoGetModules():
+    module_text = requests.get("http://comoffice.org:41031/modulerq?module_id=" + module_ID)
 
-    def get_BodyID(self):
-        bodyID = memoryProxy.getData("Device/DeviceList/ChestBoard/BodyId")
-        return bodyID
+    #only use on NAO because forslashes are not usable in directories in Windows
+    json_file = open("home/nao/json_modules/next_module.json", "w+")
+    json_file.write(module_text.text)
 
-    def get_todays_modules(self):
-        URL = "http://comoffice.org:41031/assigned_modules?nao_id=" + self.get_BodyID()
-        r = requests.get(URL)
-        print r.text
-        return
-
-
-    def main(self):
-        self.get_todays_modules()
 
 if __name__ == '__main__':
-    global naoGetModules
-    naoGetModules = naoGetModules()
-    naoGetModules.main()
+    get_todays_modules()
+    tts.say("Juhu es funktioniert")
+    #while not (memoryProxy.getData("RightBumperPressed")):
+    #    print "no"
+    #tts.say("hihi das kitzelt am rechten Fuss")
