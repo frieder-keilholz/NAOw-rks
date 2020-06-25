@@ -39,13 +39,13 @@ def get_todays_modules():
     module_text = requests.get("http://comoffice.org:41031/modulerq?module_id=" + module_ID)
 
     #only use on NAO because forslashes are not usable in directories in Windows
-    json_file = open("home/nao/json_modules/next_module.json", "w+")
+    json_file = open("next_module.json", "w+")
     json_file.write(module_text.text)
 
 
 if __name__ == '__main__':
     get_todays_modules()
-    tts.say("Juhu es funktioniert")
+    #tts.say("Juhu es funktioniert")
     #while not (memoryProxy.getData("RightBumperPressed")):
     #    print "no"
     #tts.say("hihi das kitzelt am rechten Fuss")
