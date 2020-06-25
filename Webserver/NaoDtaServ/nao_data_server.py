@@ -9,8 +9,8 @@ import mysql.connector as mariaDB
 from urllib.parse import urlparse
 import json
 
-hostName = "localhost"
-serverPort = 42031
+hostName = "192.168.2.168"
+serverPort = 41031
 
 class MyServer(BaseHTTPRequestHandler):
     #decyphers the request
