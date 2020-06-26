@@ -28,26 +28,29 @@ anims = ALProxy("ALAnimatedSpeech", IP, PORT)
 postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 memoryProxy = ALProxy("ALMemory", IP, PORT)
 configuration = {"bodylanguageMode" : "contextual"}
-tfa = {"right_answer": ["animations/Sit/Emotions/Positive/Happy_2"],
-       "wrong_answer": ["animations/Sit/Emotions/Negative/Frustrated_1"]
+ttw = {"affirmative": ["right_answer"],
+       "negative": ["wrong_answer"],
+       "no": ["wrong_answer"]
        }
-anims.declareTagForAnimations(tfa)
+anims.addTagsToWords(ttw)
 
-
-def right_answer(right_answer):
+def initialize():
     motion.wakeUp()
     motion.setStiffnesses("Body", 1.0)
     postureProxy.goToPosture("Sit", 1.0)
-    anims.say("^start(animations/Sit/Emotions/Positive/Happy_2)" + right_answer, configuration)
-    time.sleep(5)
+
+
+def right_answer(right_answer):
+
+    #^start(animations/Sit/Emotions/Positive/Happy_2)
+    anims.say("^start(Sit/Emotions/Positive/Happy_2)" + right_answer + "^wait(Sit/Emotions/Positive/Happy_2)", configuration)
+    time.sleep(6)
     postureProxy.goToPosture("Sit", 1.0)
     motion.rest()
 
 def wrong_answer(wrong_answer):
-    motion.wakeUp()
-    motion.setStiffnesses("Body", 1.0)
-    postureProxy.goToPosture("Sit", 1.0)
-    anims.say("^start(animations/Sit/Emotions/Negative/Frustrated_1)" + wrong_answer, configuration)
-    time.sleep(5)
+    #"^start(No_3)" +
+    anims.say("^start(Sit/Emotions/Negative/Frustrated_1) " + wrong_answer + "^wait(Sit/Emotions/Negative/Frustrated_1)", configuration)
+    time.sleep(6)
     postureProxy.goToPosture("Sit", 1.0)
     motion.rest()
