@@ -41,18 +41,19 @@ def initialize():
 
 
 def right_answer(right_answer):
-
+    initialize()
     #^start(animations/Sit/Emotions/Positive/Happy_2)
     anims.say("^start(Sit/Emotions/Positive/Happy_2)" + right_answer + "^wait(Sit/Emotions/Positive/Happy_2)", configuration)
     time.sleep(6)
-    postureProxy.goToPosture("Sit", 1.0)
-    
+    put_to_rest()
+
 
 def wrong_answer(wrong_answer):
+    initialize()
     #"^start(No_3)" +
     anims.say("^start(Sit/Emotions/Negative/Frustrated_1) " + wrong_answer + "^wait(Sit/Emotions/Negative/Frustrated_1)", configuration)
     time.sleep(6)
-    postureProxy.goToPosture("Sit", 1.0)
+    put_to_rest()
 
 
 def put_to_rest():
