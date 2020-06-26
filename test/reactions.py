@@ -17,7 +17,8 @@ from naoqi import ALModule
 from naoqi import ALBroker
 
 # SET IP AND PORT
-IP = "192.168.2.162"
+#IP = "192.168.2.162"
+IP = "127.0.0.1"
 PORT = 9559
 
 motion = ALProxy("ALMotion", IP, PORT)
