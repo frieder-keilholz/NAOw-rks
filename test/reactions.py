@@ -43,7 +43,7 @@ def initialize():
 def right_answer(right_answer):
     initialize()
     anims.say("^start(Sit/Emotions/Positive/Happy_2) ^wait(Sit/Emotions/Positive/Happy_2)", configuration)
-    time.sleep(5)
+    time.sleep(7)
     tts.say(right_answer)
     time.sleep(1)
     put_to_rest()
@@ -52,7 +52,7 @@ def right_answer(right_answer):
 def wrong_answer(wrong_answer):
     initialize()
     anims.say("^start(Sit/Emotions/Negative/Frustrated_1) ^wait(Sit/Emotions/Negative/Frustrated_1)", configuration)
-    time.sleep(5)
+    time.sleep(7)
     tts.say(wrong_answer)
     time.sleep(1)
     put_to_rest()
