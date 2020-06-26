@@ -46,11 +46,15 @@ def right_answer(right_answer):
     anims.say("^start(Sit/Emotions/Positive/Happy_2)" + right_answer + "^wait(Sit/Emotions/Positive/Happy_2)", configuration)
     time.sleep(6)
     postureProxy.goToPosture("Sit", 1.0)
-    motion.rest()
+    
 
 def wrong_answer(wrong_answer):
     #"^start(No_3)" +
     anims.say("^start(Sit/Emotions/Negative/Frustrated_1) " + wrong_answer + "^wait(Sit/Emotions/Negative/Frustrated_1)", configuration)
     time.sleep(6)
+    postureProxy.goToPosture("Sit", 1.0)
+
+
+def put_to_rest():
     postureProxy.goToPosture("Sit", 1.0)
     motion.rest()
