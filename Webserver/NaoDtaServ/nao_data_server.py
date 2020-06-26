@@ -79,7 +79,7 @@ class MyServer(BaseHTTPRequestHandler):
                     question_dict = json.loads(MyServer.execute_select(" SELECT * FROM questions WHERE question_task_id = '" + task['task_id'] +"'" +';'))
                     for question in question_dict:
                         print (question)
-                        answer_dict= json.loads(MyServer.execute_select(" SELECT * FROM answers WHERE answer_question_id = '" + question['question_task_id'] +"'" +';'))
+                        answer_dict= json.loads(MyServer.execute_select(" SELECT * FROM answers WHERE answer_question_id = '" + question['question_id'] +"'" +';'))
                         question.update({ "answers" : answer_dict })
                     task.update({"questions" : question_dict})
                 module_dict.update({"tasks" : tasks_dict})
